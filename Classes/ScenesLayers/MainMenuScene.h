@@ -21,14 +21,19 @@ class MainMenuScene : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
-    
+    void update(float dt);
     virtual bool init();
-    
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
-    // implement the "static create()" method manually
     CREATE_FUNC(MainMenuScene);
+    
+private:
+    virtual void onEnter();
+    virtual void onExit();
+    
+    void showTankIcon(cocos2d::Ref* pSender);
+    void beginItemTouched(cocos2d::Ref* pSender);
+    void optionItemTouched(cocos2d::Ref* pSender);
+    void setTouchEnabled(bool enabled);
+    void onTouchBegan();
 };
 
 #endif /* defined(__BattleCity__MainMenuScene__) */

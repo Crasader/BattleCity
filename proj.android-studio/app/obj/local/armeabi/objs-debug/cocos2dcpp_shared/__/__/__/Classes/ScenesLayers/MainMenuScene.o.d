@@ -343,7 +343,8 @@ obj/local/armeabi/objs-debug/cocos2dcpp_shared/__/__/__/Classes/ScenesLayers/Mai
  /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCNotificationCenter.h \
  /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCSet.h \
  /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCString.h \
- /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCDeprecated.h
+ /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCDeprecated.h \
+ jni/../../../Classes/Categories/CCAnimationHelper.h
 
 jni/../../../Classes/ScenesLayers/MainMenuScene.h:
 
@@ -1032,3 +1033,5 @@ jni/../../../Classes/ScenesLayers/MainMenuScene.h:
 /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCString.h:
 
 /Users/jay/Documents/cocos2dxProjects/BattleCity/proj.android-studio/../cocos2d/cocos/3d/../deprecated/CCDeprecated.h:
+
+jni/../../../Classes/Categories/CCAnimationHelper.h:

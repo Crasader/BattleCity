@@ -7,93 +7,121 @@
 //
 
 #include "MainMenuScene.h"
+#include "CCAnimationHelper.h"
+#include "GameManager.h"
 
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
 {
-    // 'scene' is an autorelease object
     auto scene = Scene::create();
-    
-    // 'layer' is an autorelease object
     auto layer = MainMenuScene::create();
-    
-    // add layer as a child to scene
     scene->addChild(layer);
-    
-    // return the scene
     return scene;
 }
 
-// on "init" you need to initialize your instance
 bool MainMenuScene::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if ( !Layer::init() )
     {
         return false;
     }
     
-    this->setTouchEnabled(true);
-//    [[DataController sharedController] resetGame];
-    
+//    this->setTouchEnabled(true);
+    GameManager::getInstance()->resetGame();
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res_default.plist");
     
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
+    auto background = Sprite::create("TankTitle.png");
+    background->setPosition(visibleSize.width * 0.5, -background->getContentSize().height * 0.5);
+    this->addChild(background, -1, kTagBackGround);
+    auto act = MoveTo::create(3.0, Vec2(visibleSize.width * 0.5, visibleSize.height * 0.5));
+    auto call = CallFuncN::create(CC_CALLBACK_1(MainMenuScene::showTankIcon, this));
+    auto seq = Sequence::create(act, call, NULL);
+    seq->setTag(kTagMoveToCenterAction);
+    background->runAction(seq);
     
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(MainMenuScene::menuCloseCallback, this));
+    MenuItemFont::setFontName("Verdana-Bold");
+    MenuItemFont::setFontSize(20);
     
-    closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+    auto beginItem = CCMenuItemFont::create("开始", CC_CALLBACK_1(MainMenuScene::beginItemTouched, this));
+    beginItem->setPosition(visibleSize.width * 0.5, visibleSize.height * 0.4);
+    auto optionItem = CCMenuItemFont::create("选项", CC_CALLBACK_1(MainMenuScene::optionItemTouched, this));
+    optionItem->setPosition(visibleSize.width * 0.5, visibleSize.height * 0.3);
     
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
+    auto menu = Menu::create(beginItem, optionItem, NULL);
     menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
-    
-    /////////////////////////////
-    // 3. add your codes below...
-    
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
-    
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-    
-    // add "MainMenuScene" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    menu->setTag(100);
+    background->addChild(menu, 1);
     
     return true;
 }
 
-
-void MainMenuScene::menuCloseCallback(Ref* pSender)
+void MainMenuScene::onEnter()
 {
-    Director::getInstance()->end();
+    Layer::onEnter();
     
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+    // Register Touch Event
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [](Touch* touch, Event* event) {
+        cocos2d::log("You touched %f, %f", touch->getLocationInView().x, touch->getLocationInView().y);
+        auto target = static_cast<MainMenuScene*>(event->getCurrentTarget());
+        if (target->getChildByTag(kTagBackGround)->getNumberOfRunningActions() > 0) {
+            target->getChildByTag(kTagBackGround)->stopAllActions();
+            Size visibleSize = Director::getInstance()->getVisibleSize();
+            auto move = MoveTo::create(0.1f, Vec2(visibleSize.width * 0.5, visibleSize.height * 0.5));
+            auto call = CallFuncN::create(CC_CALLBACK_1(MainMenuScene::showTankIcon, target));
+            auto seq = Sequence::create(move, call, NULL);
+            target->getChildByTag(kTagBackGround)->runAction(seq);
+        }
+        return true;
+    };
+    listener->onTouchMoved = [](Touch* touch, Event* event) {
+        cocos2d::log("touch moved");
+    };
+    listener->onTouchEnded = [](Touch* touch, Event* event) {
+        cocos2d::log("touch ended");
+    };
+    listener->setSwallowTouches(true);//不向下传递触摸
+    dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+}
+
+void MainMenuScene::onExit()
+{
+    // You don't need to unregister listeners here as new API
+    // removes all linked listeners automatically in CCNode's destructor
+    // which is the base class for all cocos2d DRAWING classes
+    
+    Layer::onExit();
+}
+
+void MainMenuScene::update(float dt)
+{
+    
+}
+
+void MainMenuScene::showTankIcon(Ref* pSender)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto sprite = Sprite::createWithSpriteFrameName("tank11.png");
+    sprite->setPosition(Vec2(visibleSize.width * 0.4, visibleSize.height * 0.4));
+    sprite->setRotation(90);
+    this->addChild(sprite);
+    auto animation = AnimationHelper::createWithSpriteFrame("tank1", 2, 0.1);
+    auto animate = Animate::create(animation);
+    auto repeat = RepeatForever::create(animate);
+    sprite->runAction(repeat);
+}
+
+void MainMenuScene::beginItemTouched(Ref* pSender)
+{
+    Director::getInstance()->replaceScene(MainMenuScene::createScene());
+}
+
+void MainMenuScene::optionItemTouched(Ref* pSender)
+{
+    
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="26" height="26" tilewidth="12" tileheight="12">
+ <tileset firstgid="1" name="Terr1" tilewidth="12" tileheight="12">
+  <tileoffset x="1" y="1"/>
+  <image source="Terr1.png" width="864" height="24"/>
+  <tile id="2">
+   <properties>
+    <property name="isBoss" value="1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="isBoss" value="1"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="isSteel" value="1"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="isBrick" value="1"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="isBoss" value="1"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="isBoss" value="1"/>
+   </properties>
+  </tile>
+  <tile id="84">
+   <properties>
+    <property name="isBoss" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="ObjectLayer" width="26" height="26">
+  <data encoding="base64" compression="zlib">
+   eJzNlMENgDAMA8sATMI87L8Kn+Rj1cRpaUMkP1CDL3KrtNav08QqOldrFecyqT7YH31XcyJ/5uvzVXNGuV5fvYtZzmFSOczP+90Pc9zNYbwsl/ns4qAPCudwsfwwtyoOFt5fds9UcdiewFyy81ZxVB/2TvA8u6//ylGrijP7v5rbm1evd5TDvG4T40S5ruY8/IQkYQ==
+  </data>
+ </layer>
+</map>
