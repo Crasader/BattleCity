@@ -28,6 +28,8 @@ public:
     
     long getHighestScore();
     void setHighestScore(long highestScore);
+    bool getChooseLevel();
+    void setChooseLevel(bool chooseLevel);
     int getLevel();
     void setLevel(int level);
     

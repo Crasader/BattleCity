@@ -83,6 +83,15 @@ void GameManager::setLevel(int level)
     }
 }
 
+bool GameManager::getChooseLevel()
+{
+    return _chooseLevel;
+}
+
+void GameManager::setChooseLevel(bool chooseLevel)
+{
+    _chooseLevel = chooseLevel;
+}
 
 void GameManager::resetGame(){
     _chooseLevel = true;

@@ -21,7 +21,6 @@ class MainMenuScene : public cocos2d::Layer
 {
 public:
     static cocos2d::Scene* createScene();
-    void update(float dt);
     virtual bool init();
     CREATE_FUNC(MainMenuScene);
     
