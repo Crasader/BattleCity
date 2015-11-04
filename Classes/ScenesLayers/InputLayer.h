@@ -27,6 +27,8 @@ private:
     
     void addFireButton();
     void addJoystick();
+    
+    void update(float delta);
 };
 
 #endif /* defined(__BattleCity__InputLayer__) */

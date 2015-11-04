@@ -42,12 +42,12 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(GameScene);
-    
+    static GameScene* getCurrentGameScene();
+    static cocos2d::Rect getScreenRect();
 private:
     virtual void onEnter();
     virtual void onExit();
     
-    cocos2d::Rect screenRect;
     int bricks[2704];
     cocos2d::Label *liveLB;
     cocos2d::Vec2 offset;

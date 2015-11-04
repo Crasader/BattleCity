@@ -32,6 +32,17 @@ public:
     void setChooseLevel(bool chooseLevel);
     int getLevel();
     void setLevel(int level);
+    bool getIsOver();
+    void setIsOver(bool isOver);
+    long getScore();
+    void setScore(long score);
+    
+    void addCurrentEnemyCountBy(int amount);
+    void addScoreBy(long amount);
+    void addEnemyAKilled(long amount);
+    void addEnemyBKilled(long amount);
+    void addEnemyCKilled(long amount);
+    void addEnemyDKilled(long amount);
     
 protected:
     int _level;

@@ -77,6 +77,28 @@
 		69C068F81BE6079A00263A6D /* SneakyJoystickSkinnedBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068EF1BE6079A00263A6D /* SneakyJoystickSkinnedBase.cpp */; };
 		69C068FF1BE60AFB00263A6D /* InputLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068FD1BE60AFB00263A6D /* InputLayer.cpp */; };
 		69C069001BE60AFB00263A6D /* InputLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068FD1BE60AFB00263A6D /* InputLayer.cpp */; };
+		69C069041BE61F4400263A6D /* AbcSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069021BE61F4400263A6D /* AbcSprite.cpp */; };
+		69C069051BE61F4400263A6D /* AbcSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069021BE61F4400263A6D /* AbcSprite.cpp */; };
+		69C069081BE6234E00263A6D /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069061BE6234E00263A6D /* Entity.cpp */; };
+		69C069091BE6234E00263A6D /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069061BE6234E00263A6D /* Entity.cpp */; };
+		69C0690E1BE8B1CE00263A6D /* EnemyEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0690A1BE8B1CE00263A6D /* EnemyEntity.cpp */; };
+		69C0690F1BE8B1CE00263A6D /* EnemyEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0690A1BE8B1CE00263A6D /* EnemyEntity.cpp */; };
+		69C069101BE8B1CE00263A6D /* PlayerEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0690C1BE8B1CE00263A6D /* PlayerEntity.cpp */; };
+		69C069111BE8B1CE00263A6D /* PlayerEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0690C1BE8B1CE00263A6D /* PlayerEntity.cpp */; };
+		69C069171BE8C11000263A6D /* StandardMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069131BE8C11000263A6D /* StandardMoveComponent.cpp */; };
+		69C069181BE8C11000263A6D /* StandardMoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069131BE8C11000263A6D /* StandardMoveComponent.cpp */; };
+		69C069191BE8C11000263A6D /* StandardShootComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069151BE8C11000263A6D /* StandardShootComponent.cpp */; };
+		69C0691A1BE8C11000263A6D /* StandardShootComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069151BE8C11000263A6D /* StandardShootComponent.cpp */; };
+		69C069251BE8CCE000263A6D /* Blast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691B1BE8CCE000263A6D /* Blast.cpp */; };
+		69C069261BE8CCE000263A6D /* Blast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691B1BE8CCE000263A6D /* Blast.cpp */; };
+		69C069271BE8CCE000263A6D /* Born.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691D1BE8CCE000263A6D /* Born.cpp */; };
+		69C069281BE8CCE000263A6D /* Born.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691D1BE8CCE000263A6D /* Born.cpp */; };
+		69C069291BE8CCE000263A6D /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691F1BE8CCE000263A6D /* Bullet.cpp */; };
+		69C0692A1BE8CCE000263A6D /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C0691F1BE8CCE000263A6D /* Bullet.cpp */; };
+		69C0692B1BE8CCE000263A6D /* BulletCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069211BE8CCE000263A6D /* BulletCache.cpp */; };
+		69C0692C1BE8CCE000263A6D /* BulletCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069211BE8CCE000263A6D /* BulletCache.cpp */; };
+		69C0692D1BE8CCE000263A6D /* EnemyCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069231BE8CCE000263A6D /* EnemyCache.cpp */; };
+		69C0692E1BE8CCE000263A6D /* EnemyCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C069231BE8CCE000263A6D /* EnemyCache.cpp */; };
 		69CA78E71BCB6F8700CBDDD4 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 69CA78E61BCB6F8700CBDDD4 /* sound */; };
 		69CA78E81BCB6F8700CBDDD4 /* sound in Resources */ = {isa = PBXBuildFile; fileRef = 69CA78E61BCB6F8700CBDDD4 /* sound */; };
 		69CA78FA1BCBBE9700CBDDD4 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CA78F81BCBBE9700CBDDD4 /* MainMenuScene.cpp */; };
@@ -230,6 +252,28 @@
 		69C068F01BE6079A00263A6D /* SneakyJoystickSkinnedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyJoystickSkinnedBase.h; sourceTree = "<group>"; };
 		69C068FD1BE60AFB00263A6D /* InputLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputLayer.cpp; sourceTree = "<group>"; };
 		69C068FE1BE60AFB00263A6D /* InputLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputLayer.h; sourceTree = "<group>"; };
+		69C069021BE61F4400263A6D /* AbcSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbcSprite.cpp; sourceTree = "<group>"; };
+		69C069031BE61F4400263A6D /* AbcSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbcSprite.h; sourceTree = "<group>"; };
+		69C069061BE6234E00263A6D /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		69C069071BE6234E00263A6D /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		69C0690A1BE8B1CE00263A6D /* EnemyEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyEntity.cpp; sourceTree = "<group>"; };
+		69C0690B1BE8B1CE00263A6D /* EnemyEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyEntity.h; sourceTree = "<group>"; };
+		69C0690C1BE8B1CE00263A6D /* PlayerEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerEntity.cpp; sourceTree = "<group>"; };
+		69C0690D1BE8B1CE00263A6D /* PlayerEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEntity.h; sourceTree = "<group>"; };
+		69C069131BE8C11000263A6D /* StandardMoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StandardMoveComponent.cpp; sourceTree = "<group>"; };
+		69C069141BE8C11000263A6D /* StandardMoveComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardMoveComponent.h; sourceTree = "<group>"; };
+		69C069151BE8C11000263A6D /* StandardShootComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StandardShootComponent.cpp; sourceTree = "<group>"; };
+		69C069161BE8C11000263A6D /* StandardShootComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardShootComponent.h; sourceTree = "<group>"; };
+		69C0691B1BE8CCE000263A6D /* Blast.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blast.cpp; sourceTree = "<group>"; };
+		69C0691C1BE8CCE000263A6D /* Blast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blast.h; sourceTree = "<group>"; };
+		69C0691D1BE8CCE000263A6D /* Born.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Born.cpp; sourceTree = "<group>"; };
+		69C0691E1BE8CCE000263A6D /* Born.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Born.h; sourceTree = "<group>"; };
+		69C0691F1BE8CCE000263A6D /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		69C069201BE8CCE000263A6D /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
+		69C069211BE8CCE000263A6D /* BulletCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletCache.cpp; sourceTree = "<group>"; };
+		69C069221BE8CCE000263A6D /* BulletCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletCache.h; sourceTree = "<group>"; };
+		69C069231BE8CCE000263A6D /* EnemyCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyCache.cpp; sourceTree = "<group>"; };
+		69C069241BE8CCE000263A6D /* EnemyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyCache.h; sourceTree = "<group>"; };
 		69CA78E61BCB6F8700CBDDD4 /* sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sound; sourceTree = "<group>"; };
 		69CA78F81BCBBE9700CBDDD4 /* MainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuScene.cpp; sourceTree = "<group>"; };
 		69CA78F91BCBBE9700CBDDD4 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
@@ -414,6 +458,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				69C069121BE8C11000263A6D /* Components */,
+				69C069011BE61E0E00263A6D /* GameObjects */,
 				69C068E71BE6079A00263A6D /* SneakyInput */,
 				690BC2871BDCD8E200F73B65 /* Manager */,
 				69CA78F61BCBBE9700CBDDD4 /* Categories */,
@@ -424,6 +470,8 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				69044CB81BE221260021AA84 /* AbcScene.cpp */,
 				69044CB91BE221260021AA84 /* AbcScene.h */,
+				69C069021BE61F4400263A6D /* AbcSprite.cpp */,
+				69C069031BE61F4400263A6D /* AbcSprite.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -499,6 +547,40 @@
 				69C068F01BE6079A00263A6D /* SneakyJoystickSkinnedBase.h */,
 			);
 			path = SneakyInput;
+			sourceTree = "<group>";
+		};
+		69C069011BE61E0E00263A6D /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				69C069061BE6234E00263A6D /* Entity.cpp */,
+				69C069071BE6234E00263A6D /* Entity.h */,
+				69C0690A1BE8B1CE00263A6D /* EnemyEntity.cpp */,
+				69C0690B1BE8B1CE00263A6D /* EnemyEntity.h */,
+				69C0690C1BE8B1CE00263A6D /* PlayerEntity.cpp */,
+				69C0690D1BE8B1CE00263A6D /* PlayerEntity.h */,
+				69C0691B1BE8CCE000263A6D /* Blast.cpp */,
+				69C0691C1BE8CCE000263A6D /* Blast.h */,
+				69C0691D1BE8CCE000263A6D /* Born.cpp */,
+				69C0691E1BE8CCE000263A6D /* Born.h */,
+				69C0691F1BE8CCE000263A6D /* Bullet.cpp */,
+				69C069201BE8CCE000263A6D /* Bullet.h */,
+				69C069211BE8CCE000263A6D /* BulletCache.cpp */,
+				69C069221BE8CCE000263A6D /* BulletCache.h */,
+				69C069231BE8CCE000263A6D /* EnemyCache.cpp */,
+				69C069241BE8CCE000263A6D /* EnemyCache.h */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		69C069121BE8C11000263A6D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				69C069131BE8C11000263A6D /* StandardMoveComponent.cpp */,
+				69C069141BE8C11000263A6D /* StandardMoveComponent.h */,
+				69C069151BE8C11000263A6D /* StandardShootComponent.cpp */,
+				69C069161BE8C11000263A6D /* StandardShootComponent.h */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		69CA78F61BCBBE9700CBDDD4 /* Categories */ = {
@@ -702,22 +784,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C069291BE8CCE000263A6D /* Bullet.cpp in Sources */,
 				69044CBA1BE221260021AA84 /* AbcScene.cpp in Sources */,
 				69C068DB1BE4D2E300263A6D /* GameScene.cpp in Sources */,
+				69C0690E1BE8B1CE00263A6D /* EnemyEntity.cpp in Sources */,
+				69C0692D1BE8CCE000263A6D /* EnemyCache.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				69C0692B1BE8CCE000263A6D /* BulletCache.cpp in Sources */,
+				69C069251BE8CCE000263A6D /* Blast.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				69C068F31BE6079A00263A6D /* SneakyButtonSkinnedBase.cpp in Sources */,
+				69C069041BE61F4400263A6D /* AbcSprite.cpp in Sources */,
 				690BC28E1BDCD90000F73B65 /* GameManager.cpp in Sources */,
 				69CA78FE1BCBC16200CBDDD4 /* CCAnimationHelper.cpp in Sources */,
 				69C068F51BE6079A00263A6D /* SneakyJoystick.cpp in Sources */,
+				69C069101BE8B1CE00263A6D /* PlayerEntity.cpp in Sources */,
+				69C069191BE8C11000263A6D /* StandardShootComponent.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				69C068F11BE6079A00263A6D /* SneakyButton.cpp in Sources */,
 				69CA78FA1BCBBE9700CBDDD4 /* MainMenuScene.cpp in Sources */,
 				69C068FF1BE60AFB00263A6D /* InputLayer.cpp in Sources */,
+				69C069271BE8CCE000263A6D /* Born.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				69C068F71BE6079A00263A6D /* SneakyJoystickSkinnedBase.cpp in Sources */,
 				69044CBE1BE222940021AA84 /* LevelScene.cpp in Sources */,
+				69C069081BE6234E00263A6D /* Entity.cpp in Sources */,
+				69C069171BE8C11000263A6D /* StandardMoveComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,19 +818,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C0692E1BE8CCE000263A6D /* EnemyCache.cpp in Sources */,
+				69C069281BE8CCE000263A6D /* Born.cpp in Sources */,
 				69C068DC1BE4D2E300263A6D /* GameScene.cpp in Sources */,
 				690BC28F1BDCD90000F73B65 /* GameManager.cpp in Sources */,
+				69C069051BE61F4400263A6D /* AbcSprite.cpp in Sources */,
 				69C068F61BE6079A00263A6D /* SneakyJoystick.cpp in Sources */,
 				69C068F21BE6079A00263A6D /* SneakyButton.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				69C069181BE8C11000263A6D /* StandardMoveComponent.cpp in Sources */,
 				69044CBB1BE221260021AA84 /* AbcScene.cpp in Sources */,
 				69C069001BE60AFB00263A6D /* InputLayer.cpp in Sources */,
 				69C068F41BE6079A00263A6D /* SneakyButtonSkinnedBase.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				69CA78FF1BCBC16200CBDDD4 /* CCAnimationHelper.cpp in Sources */,
+				69C0691A1BE8C11000263A6D /* StandardShootComponent.cpp in Sources */,
+				69C069091BE6234E00263A6D /* Entity.cpp in Sources */,
+				69C0692A1BE8CCE000263A6D /* Bullet.cpp in Sources */,
 				69044CBF1BE222940021AA84 /* LevelScene.cpp in Sources */,
+				69C069111BE8B1CE00263A6D /* PlayerEntity.cpp in Sources */,
 				69CA78FB1BCBBE9700CBDDD4 /* MainMenuScene.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				69C0692C1BE8CCE000263A6D /* BulletCache.cpp in Sources */,
+				69C069261BE8CCE000263A6D /* Blast.cpp in Sources */,
+				69C0690F1BE8B1CE00263A6D /* EnemyEntity.cpp in Sources */,
 				69C068F81BE6079A00263A6D /* SneakyJoystickSkinnedBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

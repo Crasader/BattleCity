@@ -9,6 +9,7 @@
 #include "InputLayer.h"
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
+#include "GameManager.h"
 
 
 USING_NS_CC;
@@ -24,6 +25,7 @@ bool InputLayer::init()
     this->addFireButton();
     this->addJoystick();
     
+    this->scheduleUpdate();
     return true;
 }
 
@@ -38,6 +40,7 @@ void InputLayer::addFireButton(){
     auto skinFireButton = SneakyButtonSkinnedBase::create();
     skinFireButton->setPosition(Vec2(screenSize.width - buttonRadius * 1.0f, buttonRadius * 1.0f));
     skinFireButton->setDefaultSprite(Sprite::createWithSpriteFrameName("button-default.png"));
+    skinFireButton->setActivatedSprite(Sprite::createWithSpriteFrameName("button-pressed.png"));
     skinFireButton->setPressSprite(Sprite::createWithSpriteFrameName("button-pressed.png"));
     skinFireButton->setButton(fireButton);
     skinFireButton->setScale(0.5f);
@@ -65,4 +68,11 @@ void InputLayer::addJoystick(){
     this->addChild(skinStick);
 }
 
-void update(float delta)
+void InputLayer::update(float delta){
+    if(GameManager::getInstance()->getIsOver()){
+        totalTime += delta;
+        
+        auto gameScene = GameScene::getCurrentGameScene();
+        
+    }
+}

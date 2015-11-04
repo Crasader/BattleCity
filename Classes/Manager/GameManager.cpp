@@ -93,6 +93,15 @@ void GameManager::setChooseLevel(bool chooseLevel)
     _chooseLevel = chooseLevel;
 }
 
+bool GameManager::getIsOver(){
+    return _over;
+}
+
+void GameManager::setIsOver(bool isOver)
+{
+    _over = isOver;
+}
+
 void GameManager::resetGame(){
     _chooseLevel = true;
     _over = false;
@@ -110,3 +119,34 @@ void GameManager::resetLevel(){
     _currentEnemyCount = 0;
 }
 
+void GameManager::addCurrentEnemyCountBy(int amount){
+    _currentEnemyCount += amount;
+}
+
+long GameManager::getScore(){
+    return _score;
+}
+
+void GameManager::setScore(long score){
+    _score = score;
+}
+
+void GameManager::addScoreBy(long amount){
+    _score += amount;
+}
+
+void GameManager::addEnemyAKilled(long amount){
+    _enemyAKilled += amount;
+}
+
+void GameManager::addEnemyBKilled(long amount){
+    _enemyBKilled += amount;
+}
+
+void GameManager::addEnemyCKilled(long amount){
+    _enemyCKilled += amount;
+}
+
+void GameManager::addEnemyDKilled(long amount){
+    _enemyDKilled += amount;
+}
