@@ -17,7 +17,7 @@ class Bullet : public cocos2d::Sprite
 public:
     virtual bool init();
     CREATE_FUNC(Bullet);
-    Bullet* createBullet();
+    static Bullet* createBullet();
     CC_SYNTHESIZE(cocos2d::Vec2, velocity, Velocity);
     CC_SYNTHESIZE(bool, isPlayerBullet, IsPlayerBullet);
     CC_SYNTHESIZE(cocos2d::TMXTiledMap*, tileMap, TileMap);

@@ -10,15 +10,16 @@
 #define __BattleCity__EnemyCache__
 
 #include "cocos2d.h"
+#include "EnemyEntity.h"
 
 class EnemyCache : public cocos2d::Sprite
 {
 public:
     virtual bool init();
     CREATE_FUNC(EnemyCache);
-    
+    CC_SYNTHESIZE(cocos2d::SpriteBatchNode*, batch, Batch);
 private:
-
+    cocos2d::Vector<EnemyEntity *> enemies;
 };
 
 #endif /* defined(__BattleCity__EnemyCache__) */

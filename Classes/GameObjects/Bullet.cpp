@@ -21,13 +21,7 @@ const Vec2 Bullet::_offset(110, 4);
 Bullet* Bullet::createBullet(){
     auto born = Bullet::create();
     if (born->initWithSpriteFrameName("bullet.png")) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("hit.wav");
-        CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("blast.wav");
-        auto node = GameScene::getCurrentGameScene()->getChildByTag(GameSceneLayerTagMap);
-        CCASSERT(dynamic_cast<TMXTiledMap*>(node), "not a CCTMXTiledMap");
-        tileMap = dynamic_cast<TMXTiledMap*>(node);
-        objectLayer = tileMap->getLayer("ObjectLayer");
-        tileMapHeightInPixels = tileMap->getMapSize().height * tileMap->getTileSize().height;
+
     }
     return born;
 }
@@ -38,6 +32,14 @@ bool Bullet::init()
     {
         return false;
     }
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("hit.wav");
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("blast.wav");
+    auto node = GameScene::getCurrentGameScene()->getChildByTag(GameSceneLayerTagMap);
+    CCASSERT(dynamic_cast<TMXTiledMap*>(node), "not a CCTMXTiledMap");
+    tileMap = dynamic_cast<TMXTiledMap*>(node);
+    objectLayer = tileMap->getLayer("ObjectLayer");
+    tileMapHeightInPixels = tileMap->getMapSize().height * tileMap->getTileSize().height;
     
     return true;
 }
