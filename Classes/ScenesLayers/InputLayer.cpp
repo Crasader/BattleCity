@@ -69,7 +69,7 @@ void InputLayer::addJoystick(){
 }
 
 void InputLayer::update(float delta){
-    if(GameManager::getInstance()->getIsOver()){
+    if(GameManager::getInstance()->getOver()){
         totalTime += delta;
         
         auto gameScene = GameScene::getCurrentGameScene();

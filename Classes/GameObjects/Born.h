@@ -16,10 +16,13 @@ class Born : public cocos2d::Sprite
 public:
     virtual bool init();
     CREATE_FUNC(Born);
-    Born* createBorn();
+    static Born* createBorn();
     void blast();
+    cocos2d::Vec2 getPosition();
+    void setPosition(cocos2d::Vec2 pos);
+    void theEnd(Ref* pSender);
 private:
-    cocos2d::Vec2 _offset;
+    static const cocos2d::Vec2 _offset;
 };
 
 #endif /* defined(__BattleCity__Born__) */

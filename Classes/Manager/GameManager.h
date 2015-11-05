@@ -18,10 +18,10 @@ class GameManager : public cocos2d::Ref
 public:
     /** Returns the shared instance of the Game Manager */
     static GameManager* getInstance(void);
-    
-public:
     virtual ~GameManager();
     bool init(void);
+    
+    CC_SYNTHESIZE(bool, over, Over);
     
     void resetGame();
     void resetLevel();
@@ -32,8 +32,6 @@ public:
     void setChooseLevel(bool chooseLevel);
     int getLevel();
     void setLevel(int level);
-    bool getIsOver();
-    void setIsOver(bool isOver);
     long getScore();
     void setScore(long score);
     
@@ -49,7 +47,6 @@ protected:
     int _totalLevels;
     long _highestScore;
     int _lives;
-    bool _over;
     long _score;
     int _enemyAKilled;
     int _enemyBKilled;

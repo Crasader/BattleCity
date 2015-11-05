@@ -46,6 +46,9 @@ bool GameScene::init()
     
     offset = Vec2(110, 4);
     
+    int _bricks[2704];
+    bricks = _bricks;
+    
     auto inputLayer = InputLayer::create();
     this->addChild(inputLayer, 100, GameSceneLayerTagInput);
     
@@ -62,3 +65,6 @@ void GameScene::onExit()
     Layer::onExit();
 }
 
+void GameScene::gameOver(){
+    
+}

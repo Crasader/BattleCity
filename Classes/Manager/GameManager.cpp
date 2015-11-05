@@ -32,7 +32,7 @@ bool GameManager::init(void)
     _level = 1;
     _lives = 30;
     _totalLevels = 4;
-    _over = false;
+    over = false;
     _chooseLevel = true;
     _highestScore = 20000;
     _score = 0;
@@ -93,18 +93,9 @@ void GameManager::setChooseLevel(bool chooseLevel)
     _chooseLevel = chooseLevel;
 }
 
-bool GameManager::getIsOver(){
-    return _over;
-}
-
-void GameManager::setIsOver(bool isOver)
-{
-    _over = isOver;
-}
-
 void GameManager::resetGame(){
     _chooseLevel = true;
-    _over = false;
+    over = false;
     _lives = 30;
     _level = 1;
     _score = 0;

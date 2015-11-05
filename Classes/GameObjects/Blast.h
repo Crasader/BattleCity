@@ -16,7 +16,7 @@ class Blast : public cocos2d::Sprite
 public:
     virtual bool init();
     CREATE_FUNC(Blast);
-    Blast* createBlast();
+    static Blast* createBlast();
     void blast();
     void boom();
     void boomAndShowScore(int type);
@@ -25,7 +25,7 @@ public:
     
     void theEnd(Ref* pSender);
 private:
-    cocos2d::Vec2 _offset;
+    static const cocos2d::Vec2 _offset;
 };
 
 #endif /* defined(__BattleCity__Blast__) */
