@@ -10,6 +10,10 @@
 #include "CCAnimationHelper.h"
 #include "GameManager.h"
 #include "InputLayer.h"
+#include "PlayerEntity.h"
+#include "BulletCache.h"
+#include "EnemyCache.h"
+#include "Entity.h"
 
 USING_NS_CC;
 
@@ -65,6 +69,30 @@ void GameScene::onExit()
     Layer::onExit();
 }
 
+Entity* GameScene::getDefaultPlayer(){
+    return _defaultPlayer;
+}
+
+EnemyCache* GameScene::getEnemyCache(){
+    return _enemyCache;
+}
+
+BulletCache* GameScene::getBulletCache(){
+    return _bulletCache;
+}
+
+void GameScene::addStar(){
+    
+}
+
 void GameScene::gameOver(){
+    
+}
+
+void GameScene::showOver(){
+    
+}
+
+void GameScene::showScore(){
     
 }

@@ -43,12 +43,24 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene);
     CC_SYNTHESIZE(int*, bricks, Bricks);
+
     static GameScene* getCurrentGameScene();
     static cocos2d::Rect getScreenRect();
+    Entity* getDefaultPlayer();
+    EnemyCache* getEnemyCache();
+    BulletCache* getBulletCache();
+    
+    void addStar();
     void gameOver();
+    void showOver();
+    void showScore();
 private:
     virtual void onEnter();
     virtual void onExit();
+    
+    Entity* _defaultPlayer;
+    EnemyCache* _enemyCache;
+    BulletCache* _bulletCache;
     
     cocos2d::Label *liveLB;
     cocos2d::Vec2 offset;

@@ -12,14 +12,23 @@
 #include "cocos2d.h"
 #include "EnemyEntity.h"
 
+class Born;
 class EnemyCache : public cocos2d::Sprite
 {
 public:
     virtual bool init();
     CREATE_FUNC(EnemyCache);
     CC_SYNTHESIZE(cocos2d::SpriteBatchNode*, batch, Batch);
+    void addStar();
 private:
     cocos2d::Vector<EnemyEntity *> enemies;
+    void initEnemies();
+    void initEnemySymbols();
+    void spawnEnemy(Born *sprite);
+    void spawnFirstThreeEnemy(float delta);
+    void checkForBulletCollisions();
+    void continueSpawnEnemy(float delta);
+    void update(float delta);
 };
 
 #endif /* defined(__BattleCity__EnemyCache__) */

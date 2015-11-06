@@ -62,7 +62,7 @@ EnemyEntity* EnemyEntity::createWithType(EnemyType t){
     auto entity = EnemyEntity::create();
     if (entity->initWithSpriteFrameName(fullFrameName)) {
         entity->_type = t;
-        entity->_frameName = frameName;
+        entity->frameName = frameName;
         // Create the game logic components
 //        entity->addChild(<#cocos2d::Node *child#>);
 //        [self addChild:[StandardMoveComponent node]];
@@ -114,11 +114,11 @@ void EnemyEntity::gotHit(){
             this->die();
             break;
         case EnemyTypeD3:
-            _frameName = "enemyD11";
+            frameName = "enemyD11";
             _type = EnemyTypeD1;
             break;
         case EnemyTypeD4:
-            _frameName = "enemyD31";
+            frameName = "enemyD31";
             _type = EnemyTypeD3;
             break;	
         default:

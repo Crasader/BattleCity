@@ -131,7 +131,7 @@ void Bullet::checkCollisionWithBullet(float delta){
 }
 
 bool Bullet::checkCollision(cocos2d::Vec2 pos){
-    if (pos.x>0 && pos.x<312 && pos.y>0 && pos.y<312) {
+    if (pos.x > 0 && pos.x < 312 && pos.y > 0 && pos.y < 312) {
         Vec2 tilePos = this->tilePosFromLocation(pos, tileMap);
         int tileGID = objectLayer->getTileGIDAt(tilePos);
         if (tileGID != 0) {

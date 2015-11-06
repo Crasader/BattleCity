@@ -40,8 +40,8 @@ bool GameManager::init(void)
     _enemyBKilled = 0;
     _enemyCKilled = 0;
     _enemyDKilled = 0;
-    _enemyRemain = 20;
-    _currentEnemyCount = 0;
+    enemyRemain = 20;
+    currentEnemyCount = 0;
     return true;
 }
 
@@ -106,12 +106,12 @@ void GameManager::resetLevel(){
     _enemyBKilled = 0;
     _enemyCKilled = 0;
     _enemyDKilled = 0;
-    _enemyRemain = 20;
-    _currentEnemyCount = 0;
+    enemyRemain = 20;
+    currentEnemyCount = 0;
 }
 
 void GameManager::addCurrentEnemyCountBy(int amount){
-    _currentEnemyCount += amount;
+    currentEnemyCount += amount;
 }
 
 long GameManager::getScore(){

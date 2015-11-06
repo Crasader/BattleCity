@@ -22,6 +22,9 @@ public:
     bool init(void);
     
     CC_SYNTHESIZE(bool, over, Over);
+    CC_SYNTHESIZE(int, enemyRemain, EnemyRemain);
+    CC_SYNTHESIZE(int, currentEnemyCount, CurrentEnemyCount);
+//    CC_SYNTHESIZE(int, enemyRemain, EnemyRemain);
     
     void resetGame();
     void resetLevel();
@@ -53,8 +56,6 @@ protected:
     int _enemyCKilled;
     int _enemyDKilled;
     bool _chooseLevel;
-    int _enemyRemain;
-    int _currentEnemyCount;
 };
 
 #endif /* defined(__BattleCity__GameManager__) */

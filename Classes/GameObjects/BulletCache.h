@@ -24,7 +24,6 @@ public:
     bool isEnemyBulletCollidingWithRect(cocos2d::Rect);
 private:
     int nextInactiveBullet;
-    
     bool isBulletCollidingWithRect(cocos2d::Rect rect, bool usePlayerBullets);
 };
 
