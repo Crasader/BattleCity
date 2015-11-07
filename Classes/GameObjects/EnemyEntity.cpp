@@ -8,6 +8,10 @@
 
 #include "EnemyEntity.h"
 #include "GameManager.h"
+#include "StandardMoveComponent.h"
+#include "StandardShootComponent.h"
+#include "Blast.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -63,14 +67,11 @@ EnemyEntity* EnemyEntity::createWithType(EnemyType t){
     if (entity->initWithSpriteFrameName(fullFrameName)) {
         entity->_type = t;
         entity->frameName = frameName;
+        
         // Create the game logic components
-//        entity->addChild(<#cocos2d::Node *child#>);
-//        [self addChild:[StandardMoveComponent node]];
-//        
-//        StandardShootComponent* shootComponent = [StandardShootComponent node];
-//        
-//        [self addChild:shootComponent];
-//        
+        entity->addChild(StandardMoveComponent::create());
+        entity->addChild(StandardShootComponent::create());
+        
         // enemies start invisible
         entity->setVisible(true);
     }
@@ -130,5 +131,12 @@ void EnemyEntity::gotHit(){
 void EnemyEntity::die(){
     GameManager::getInstance()->addCurrentEnemyCountBy(-1);
     this->setVisible(false);
-    
+    auto blast = Blast::createBlast();
+    blast->setPosition(this->getPosition());
+    int scoreType = _type / 2;
+    if (scoreType >= 4) {
+        scoreType = 3;
+    }
+    blast->boomAndShowScore(scoreType);
+    GameScene::getCurrentGameScene()->addChild(blast, 2);
 }

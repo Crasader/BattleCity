@@ -9,6 +9,7 @@
 #include "StandardShootComponent.h"
 #include "Entity.h"
 #include "GameScene.h"
+#include "BulletCache.h"
 
 USING_NS_CC;
 
@@ -34,7 +35,7 @@ void StandardShootComponent::update(float delta){
         auto gameScene = GameScene::getCurrentGameScene();
         entity->setReload(true);
         _nextShotTime = _totalTime + 1.0f;
-        
+        gameScene->getBulletCache()->shootBulletFrom(entity->getStartPos(), entity->getBulletVelocity(), _bulletFrameName, false, entity);
     }
 }
 
