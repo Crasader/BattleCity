@@ -24,7 +24,10 @@ public:
     CC_SYNTHESIZE(bool, over, Over);
     CC_SYNTHESIZE(int, enemyRemain, EnemyRemain);
     CC_SYNTHESIZE(int, currentEnemyCount, CurrentEnemyCount);
-//    CC_SYNTHESIZE(int, enemyRemain, EnemyRemain);
+    CC_SYNTHESIZE(int, enemyAKilled, EnemyAKilled);
+    CC_SYNTHESIZE(int, enemyBKilled, EnemyBKilled);
+    CC_SYNTHESIZE(int, enemyCKilled, EnemyCKilled);
+    CC_SYNTHESIZE(int, enemyDKilled, EnemyDKilled);
     
     void resetGame();
     void resetLevel();
@@ -51,10 +54,6 @@ protected:
     long _highestScore;
     int _lives;
     long _score;
-    int _enemyAKilled;
-    int _enemyBKilled;
-    int _enemyCKilled;
-    int _enemyDKilled;
     bool _chooseLevel;
 };
 

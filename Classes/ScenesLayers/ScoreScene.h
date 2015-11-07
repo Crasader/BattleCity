@@ -39,6 +39,10 @@ private:
     int totalKill;
     
     void showScore();
+    void updateLabel(float delta);
+    void showGameOver();
+    void gotoNextLevel();
+    void gotoMainMenu();
 };
 
 #endif /* defined(__BattleCity__ScoreScene__) */

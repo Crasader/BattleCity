@@ -36,10 +36,10 @@ bool GameManager::init(void)
     _chooseLevel = true;
     _highestScore = 20000;
     _score = 0;
-    _enemyAKilled = 0;
-    _enemyBKilled = 0;
-    _enemyCKilled = 0;
-    _enemyDKilled = 0;
+    enemyAKilled = 0;
+    enemyBKilled = 0;
+    enemyCKilled = 0;
+    enemyDKilled = 0;
     enemyRemain = 20;
     currentEnemyCount = 0;
     return true;
@@ -102,10 +102,10 @@ void GameManager::resetGame(){
 }
 
 void GameManager::resetLevel(){
-    _enemyAKilled = 0;
-    _enemyBKilled = 0;
-    _enemyCKilled = 0;
-    _enemyDKilled = 0;
+    enemyAKilled = 0;
+    enemyBKilled = 0;
+    enemyCKilled = 0;
+    enemyDKilled = 0;
     enemyRemain = 20;
     currentEnemyCount = 0;
 }
@@ -127,17 +127,17 @@ void GameManager::addScoreBy(long amount){
 }
 
 void GameManager::addEnemyAKilled(long amount){
-    _enemyAKilled += amount;
+    enemyAKilled += amount;
 }
 
 void GameManager::addEnemyBKilled(long amount){
-    _enemyBKilled += amount;
+    enemyBKilled += amount;
 }
 
 void GameManager::addEnemyCKilled(long amount){
-    _enemyCKilled += amount;
+    enemyCKilled += amount;
 }
 
 void GameManager::addEnemyDKilled(long amount){
-    _enemyDKilled += amount;
+    enemyDKilled += amount;
 }

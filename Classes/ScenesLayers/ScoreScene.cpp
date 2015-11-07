@@ -9,6 +9,8 @@
 #include "ScoreScene.h"
 #include "CCAnimationHelper.h"
 #include "GameManager.h"
+#include "LevelScene.h"
+#include "MainMenuScene.h"
 
 USING_NS_CC;
 
@@ -191,5 +193,153 @@ void ScoreScene::onExit()
 }
 
 void ScoreScene::showScore(){
-    
+    switch (count) {
+        case 0:
+        {
+            enemyAHits->setVisible(true);
+            enemyAScore->setVisible(true);
+            updateTimes = GameManager::getInstance()->getEnemyAKilled();
+            totalKill += updateTimes;
+            this->schedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel), 0.2f);
+            break;
+        }
+        case 1:
+        {
+            enemyBHits->setVisible(true);
+            enemyBScore->setVisible(true);
+            updateTimes = GameManager::getInstance()->getEnemyBKilled();
+            totalKill += updateTimes;
+            this->schedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel), 0.2f);
+            break;
+        }
+        case 2:
+        {
+            enemyCHits->setVisible(true);
+            enemyCScore->setVisible(true);
+            updateTimes = GameManager::getInstance()->getEnemyCKilled();
+            totalKill += updateTimes;
+            this->schedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel), 0.2f);
+            break;
+        }
+        case 3:
+        {
+            enemyDHits->setVisible(true);
+            enemyDScore->setVisible(true);
+            updateTimes = GameManager::getInstance()->getEnemyDKilled();
+            totalKill += updateTimes;
+            this->schedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel), 0.2f);
+            break;
+        }
+        case 4:
+        {
+            total->setVisible(true);
+            auto totalStr = StringUtils::format("%d", totalKill);
+            total->setString(totalStr);
+            if (GameManager::getInstance()->getOver()) {
+                DelayTime *delayAction = DelayTime::create(3.0f);
+                auto call = CallFuncN::create(CC_CALLBACK_0(ScoreScene::showGameOver, this));
+                auto seq = Sequence::create(delayAction, call, NULL);
+                this->runAction(seq);
+            }
+            else{
+                DelayTime *delayAction = DelayTime::create(3.0f);
+                auto call = CallFuncN::create(CC_CALLBACK_0(ScoreScene::gotoNextLevel, this));
+                auto seq = Sequence::create(delayAction, call, NULL);
+                this->runAction(seq);
+            }
+            break;
+        }
+        default:
+            break;
+    }
 }
+
+void ScoreScene::updateLabel(float delta){
+    switch (count) {
+        case 0:
+            if (--updateTimes > 0) {
+                auto hitStr = StringUtils::format("%d", GameManager::getInstance()->getEnemyAKilled() - updateTimes);
+                enemyAHits->setString(hitStr);
+                auto scoreStr = StringUtils::format("%d", 100 * (GameManager::getInstance()->getEnemyAKilled() - updateTimes));
+                enemyAScore->setString(scoreStr);
+            }
+            else{
+                this->unschedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel));
+                ++count;
+                this->showScore();
+            }
+            break;
+        case 1:
+            if (--updateTimes > 0) {
+                auto hitStr = StringUtils::format("%d", GameManager::getInstance()->getEnemyBKilled() - updateTimes);
+                enemyBHits->setString(hitStr);
+                auto scoreStr = StringUtils::format("%d", 200 * (GameManager::getInstance()->getEnemyBKilled() - updateTimes));
+                enemyBScore->setString(scoreStr);
+            }
+            else{
+                this->unschedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel));
+                ++count;
+                this->showScore();
+            }
+            break;
+        case 2:
+            if (--updateTimes > 0) {
+                auto hitStr = StringUtils::format("%d", GameManager::getInstance()->getEnemyCKilled() - updateTimes);
+                enemyCHits->setString(hitStr);
+                auto scoreStr = StringUtils::format("%d", 300 * (GameManager::getInstance()->getEnemyCKilled() - updateTimes));
+                enemyCScore->setString(scoreStr);
+            }
+            else{
+                this->unschedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel));
+                ++count;
+                this->showScore();
+            }
+            break;
+        case 3:
+            if (--updateTimes > 0) {
+                auto hitStr = StringUtils::format("%d", GameManager::getInstance()->getEnemyDKilled() - updateTimes);
+                enemyDHits->setString(hitStr);
+                auto scoreStr = StringUtils::format("%d", 400 * (GameManager::getInstance()->getEnemyDKilled() - updateTimes));
+                enemyDScore->setString(scoreStr);
+            }
+            else{
+                this->unschedule(CC_SCHEDULE_SELECTOR(ScoreScene::updateLabel));
+                ++count;
+                this->showScore();
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+void ScoreScene::showGameOver(){
+    Size screenSize = Director::getInstance()->getVisibleSize();
+    auto gameOver = Sprite::create("gameOver.png");
+    this->addChild(gameOver, 1);
+    gameOver->setPosition(screenSize.width * 0.5, screenSize.height * 0.5);
+    
+    DelayTime *delayAction = DelayTime::create(3.0f);
+    auto call = CallFuncN::create(CC_CALLBACK_0(ScoreScene::gotoMainMenu, this));
+    auto seq = Sequence::create(delayAction, call, NULL);
+    this->runAction(seq);
+}
+
+void ScoreScene::gotoNextLevel(){
+    GameManager::getInstance()->setLevel(GameManager::getInstance()->getLevel() + 1);
+    auto fade = TransitionFade::create(2.0f, LevelScene::createScene(), Color3B(255, 255, 255));
+    Director::getInstance()->replaceScene(fade);
+}
+
+void ScoreScene::gotoMainMenu(){
+    auto fade = TransitionFade::create(2.0f, MainMenuScene::createScene(), Color3B(255, 255, 255));
+    Director::getInstance()->replaceScene(fade);
+}
+
+//
+//-(void) draw
+//{
+//    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+//    ccDrawLine(CGPointMake(230, 65), CGPointMake(310, 65));
+//}
