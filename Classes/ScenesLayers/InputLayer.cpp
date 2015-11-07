@@ -10,7 +10,8 @@
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameManager.h"
-
+#include "Entity.h"
+#include "BulletCache.h"
 
 USING_NS_CC;
 
@@ -73,6 +74,43 @@ void InputLayer::update(float delta){
         totalTime += delta;
         
         auto gameScene = GameScene::getCurrentGameScene();
-        
+        auto player = gameScene->getDefaultPlayer();
+        auto bulletCache = gameScene->getBulletCache();
+        if (player->isVisible()) {
+            // Continuous fire
+            if (fireButton->getIsActive() && !player->getReload() && totalTime > nextShotTime) {
+                nextShotTime = totalTime + 0.5f;
+                player->setReload(true);
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("fire.wav");
+                bulletCache->shootBulletFrom(player->getStartPos(), player->getBulletVelocity(), "bullet.png", true, player);
+            }
+            
+            // Allow faster shooting by quickly tapping the fire button.
+            if (!fireButton->getIsActive()) {
+                nextShotTime = 0;
+            }
+            
+            // Moving the tank with the thumbstick.
+            Vec2 velocity = joystick->getVelocity() * 100;
+            if (velocity.x != 0 && velocity.y != 0) {
+                if (velocity.y > 80)
+                {
+                    player->setRotation(0);
+                }
+                if (velocity.x > 80)
+                {
+                    player->setRotation(90);
+                }
+                if (velocity.x < -80)
+                {
+                    player->setRotation(270);
+                }
+                if(velocity.y < -80)
+                {
+                    player->setRotation(180);
+                }
+                player->setPosition(Vec2(player->getPosition().x + velocity.x * delta, player->getPosition().y + velocity.y * delta));
+            }
+        }
     }
 }
