@@ -46,10 +46,11 @@ public:
 
     static GameScene* getCurrentGameScene();
     static cocos2d::Rect getScreenRect();
-    Entity* getDefaultPlayer();
+    PlayerEntity* getDefaultPlayer();
     EnemyCache* getEnemyCache();
     BulletCache* getBulletCache();
     
+    void initLevel();
     void addStar();
     void gameOver();
     void showOver();
@@ -63,7 +64,10 @@ private:
     BulletCache* _bulletCache;
     
     cocos2d::Label *liveLB;
-    cocos2d::Vec2 offset;
+    static const cocos2d::Rect _screenRect;
+    static const cocos2d::Vec2 _offset;
+    
+    Entity* getDefaultBoss();
 };
 
 #endif /* defined(__BattleCity__GameScene__) */

@@ -10,6 +10,7 @@
 #include "GameScene.h"
 #include "EnemyEntity.h"
 #include "EnemyCache.h"
+#include "PlayerEntity.h"
 
 USING_NS_CC;
 

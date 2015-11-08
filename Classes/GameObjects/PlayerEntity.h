@@ -10,8 +10,9 @@
 #define __BattleCity__PlayerEntity__
 
 #include "cocos2d.h"
+#include "Entity.h"
 
-class PlayerEntity : public cocos2d::Sprite
+class PlayerEntity : public Entity
 {
 public:
     virtual bool init();

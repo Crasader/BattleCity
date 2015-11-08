@@ -30,12 +30,12 @@ GameManager::~GameManager(void)
 bool GameManager::init(void)
 {
     _level = 1;
-    _lives = 30;
+    lives = 30;
     _totalLevels = 4;
     over = false;
-    _chooseLevel = true;
+    chooseLevel = true;
     _highestScore = 20000;
-    _score = 0;
+    score = 0;
     enemyAKilled = 0;
     enemyBKilled = 0;
     enemyCKilled = 0;
@@ -48,14 +48,14 @@ bool GameManager::init(void)
 /// highestScore getter
 long GameManager::getHighestScore()
 {
-    if (_highestScore > _score)
+    if (_highestScore > score)
     {
         return _highestScore;
     }
     else
     {
-        _highestScore = _score;
-        return _score;
+        _highestScore = score;
+        return score;
     }
 }
 
@@ -83,22 +83,12 @@ void GameManager::setLevel(int level)
     }
 }
 
-bool GameManager::getChooseLevel()
-{
-    return _chooseLevel;
-}
-
-void GameManager::setChooseLevel(bool chooseLevel)
-{
-    _chooseLevel = chooseLevel;
-}
-
 void GameManager::resetGame(){
-    _chooseLevel = true;
+    chooseLevel = true;
     over = false;
-    _lives = 30;
+    lives = 30;
     _level = 1;
-    _score = 0;
+    score = 0;
 }
 
 void GameManager::resetLevel(){
@@ -114,16 +104,8 @@ void GameManager::addCurrentEnemyCountBy(int amount){
     currentEnemyCount += amount;
 }
 
-long GameManager::getScore(){
-    return _score;
-}
-
-void GameManager::setScore(long score){
-    _score = score;
-}
-
 void GameManager::addScoreBy(long amount){
-    _score += amount;
+    score += amount;
 }
 
 void GameManager::addEnemyAKilled(long amount){

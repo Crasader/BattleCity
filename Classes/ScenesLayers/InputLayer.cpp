@@ -12,6 +12,7 @@
 #include "GameManager.h"
 #include "Entity.h"
 #include "BulletCache.h"
+#include "PlayerEntity.h"
 
 USING_NS_CC;
 
