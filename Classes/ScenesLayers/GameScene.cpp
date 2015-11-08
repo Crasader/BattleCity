@@ -84,6 +84,17 @@ bool GameScene::init()
     
     //玩家命数
     auto liveStr = StringUtils::format("%d", GameManager::getInstance()->getLives() - 1);
+    liveLB = Label::createWithSystemFont(liveStr, "STHeitiJ-Light", 15);
+    liveLB->setColor(Color3B::BLACK);
+    liveLB->setPosition(54, 178);
+    this->addChild(liveLB, 0, kTagLiveLabel);
+    
+    //小坦克标志
+    auto logo = Sprite::createWithSpriteFrameName("logo1.png");
+    logo->setPosition(40, 180);
+    this->addChild(logo);
+    
+    this->initLevel();
     
     return true;
 }
@@ -122,9 +133,39 @@ BulletCache* GameScene::getBulletCache(){
     return dynamic_cast<BulletCache *>(node);
 }
 
-void GameScene::initLevel(){
-    
+void GameScene::begin(){
+    this->addStar();
+    this->scheduleUpdate();
+    auto layer = this->getChildByTag(GameSceneLayerTagInput);
+    layer->scheduleUpdate();
 }
+
+void GameScene::initLevel(){
+    auto levelStr = StringUtils::format("%d", GameManager::getInstance()->getLevel());
+    auto stageLB = Label::createWithSystemFont(levelStr, "STHeitiJ-Light", 15);
+    stageLB->setColor(Color3B::BLACK);
+    stageLB->setPosition(55, 240);
+    this->addChild(stageLB);
+    
+    auto mapName = StringUtils::format("stage%d.tmx", GameManager::getInstance()->getLevel());
+    auto tileMap = TMXTiledMap::create(mapName);
+    this->addChild(tileMap, 1, GameSceneLayerTagMap);
+    tileMap->setPosition(_offset);
+    
+    //主基地标志
+    auto boss = Entity::createWithSpriteFrameName("boss.png");
+    boss->setPosition(6*24 + 12, 12);
+    this->addChild(boss, 0, GameSceneNodeTagBoss);
+    
+    auto enemyCache = EnemyCache::create();
+    this->addChild(enemyCache, 0, GameSceneNodeTagEnemyCache);
+    
+    auto bulletCache = BulletCache::create();
+    this->addChild(bulletCache, 1, GameSceneNodeTagBulletCache);
+    
+    auto player = PlayerEntity::createP
+}
+
 void GameScene::addStar(){
     
 }
@@ -138,5 +179,9 @@ void GameScene::showOver(){
 }
 
 void GameScene::showScore(){
+    
+}
+
+void GameScene::update(float delta){
     
 }

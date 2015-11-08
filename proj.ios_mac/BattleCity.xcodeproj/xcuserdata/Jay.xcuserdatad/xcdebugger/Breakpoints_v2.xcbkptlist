@@ -9,14 +9,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/ScenesLayers/GameScene.cpp"
-            timestampString = "468402057.50821"
+            filePath = "../Classes/ScenesLayers/ScoreScene.cpp"
+            timestampString = "468671823.056268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "GameScene::init()"
-            landmarkType = "5">
+            startingLineNumber = "341"
+            endingLineNumber = "341">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,12 +23,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/ScenesLayers/ScoreScene.cpp"
-            timestampString = "468671823.056268"
+            filePath = "../Classes/ScenesLayers/GameScene.cpp"
+            timestampString = "468678520.920847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341">
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "GameScene::initLevel()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

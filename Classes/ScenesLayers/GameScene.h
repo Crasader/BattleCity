@@ -68,6 +68,8 @@ private:
     static const cocos2d::Vec2 _offset;
     
     Entity* getDefaultBoss();
+    void begin();
+    void update(float delta);
 };
 
 #endif /* defined(__BattleCity__GameScene__) */
