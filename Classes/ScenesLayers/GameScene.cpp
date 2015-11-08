@@ -133,13 +133,6 @@ BulletCache* GameScene::getBulletCache(){
     return dynamic_cast<BulletCache *>(node);
 }
 
-void GameScene::begin(){
-    this->addStar();
-    this->scheduleUpdate();
-    auto layer = this->getChildByTag(GameSceneLayerTagInput);
-    layer->scheduleUpdate();
-}
-
 void GameScene::initLevel(){
     auto levelStr = StringUtils::format("%d", GameManager::getInstance()->getLevel());
     auto stageLB = Label::createWithSystemFont(levelStr, "STHeitiJ-Light", 15);
@@ -163,25 +156,79 @@ void GameScene::initLevel(){
     auto bulletCache = BulletCache::create();
     this->addChild(bulletCache, 1, GameSceneNodeTagBulletCache);
     
-    auto player = PlayerEntity::createP
+    auto player = PlayerEntity::createPlayer();
+    player->cocos2d::Sprite::setPosition(Vec2(4 * 24 + player->getContentSize().width * 0.5, player->getContentSize().height * 0.5));
+    player->setVisible(false);
+    this->addChild(player, 0, GameSceneNodeTagPlayer);
+    
+    DelayTime *delayAction = DelayTime::create(1.0f);
+    auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::begin, this));
+    auto seq = Sequence::create(delayAction, call, NULL);
+    this->runAction(seq);
+}
+
+void GameScene::begin(){
+    this->addStar();
+    this->scheduleUpdate();
+    auto layer = this->getChildByTag(GameSceneLayerTagInput);
+    layer->scheduleUpdate();
 }
 
 void GameScene::addStar(){
+    auto born = Born::createBorn();
+    born->setPosition(Vec2(4 * 24 + 12, 12));
+    born->blast();
+    this->addChild(born);
     
+    DelayTime *delayAction = DelayTime::create(1.1f);
+    auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::showPlayer, this));
+    auto seq = Sequence::create(delayAction, call, NULL);
+    this->runAction(seq);
+}
+
+void GameScene::showPlayer(){
+    auto node = this->getChildByTag(GameSceneNodeTagPlayer);
+    CCASSERT(dynamic_cast<PlayerEntity *>(node), "is not player");
+    auto player = dynamic_cast<PlayerEntity *>(node);
+    player->setVisible(true);
+    player->showArmor();
 }
 
 void GameScene::gameOver(){
-    
+    if (!GameManager::getInstance()->getOver()) {
+        GameManager::getInstance()->setOver(true);
+        auto blast = Blast::createBlast();
+        blast->setPosition(this->getDefaultBoss()->getPosition());
+        blast->boom();
+        this->addChild(blast, 2);
+        auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName("fail.png");
+        this->getDefaultBoss()->setDisplayFrame(frame);
+        this->showOver();
+    }
 }
 
 void GameScene::showOver(){
+    GameManager::getInstance()->setOver(true);
+    auto gameOver = Sprite::createWithSpriteFrameName("gameover.png");
+    gameOver->setPosition(155 + 110, 4 - gameOver->getContentSize().height);
+    auto moveTo = MoveTo::create(3.0f, Vec2(155 + 110, 4 + 155));
+    this->addChild(gameOver, 100);
+    gameOver->runAction(moveTo);
     
+    DelayTime *delayAction = DelayTime::create(5.0f);
+    auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::showScore, this));
+    auto seq = Sequence::create(delayAction, call, NULL);
+    this->runAction(seq);
 }
 
 void GameScene::showScore(){
-    
+    auto fade = TransitionFade::create(2.0f, ScoreScene::createScene(), Color3B(255, 255, 255));
+    Director::getInstance()->replaceScene(fade);
 }
 
 void GameScene::update(float delta){
-    
+    auto liveStr = StringUtils::format("%d", GameManager::getInstance()->getLives() - 1);
+    if (GameManager::getInstance()->getLives() - 1 >= 0) {
+        liveLB->setString(liveStr);
+    }
 }

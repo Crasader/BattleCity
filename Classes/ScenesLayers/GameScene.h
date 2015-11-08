@@ -52,6 +52,7 @@ public:
     
     void initLevel();
     void addStar();
+    void showPlayer();
     void gameOver();
     void showOver();
     void showScore();
