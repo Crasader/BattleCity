@@ -17,7 +17,7 @@ USING_NS_CC;
 
 bool EnemyEntity::init()
 {
-    if ( !Sprite::init() )
+    if ( !Entity::init() )
     {
         return false;
     }

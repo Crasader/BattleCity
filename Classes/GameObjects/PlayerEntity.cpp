@@ -29,7 +29,7 @@ PlayerEntity* PlayerEntity::createPlayer(){
 
 bool PlayerEntity::init()
 {
-    if ( !Sprite::init() )
+    if ( !Entity::init() )
     {
         return false;
     }
