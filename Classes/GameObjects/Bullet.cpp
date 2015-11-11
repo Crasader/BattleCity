@@ -15,9 +15,6 @@
 
 USING_NS_CC;
 
-//游戏界面偏移量
-const Vec2 Bullet::_offset(110, 4);
-
 Bullet* Bullet::createBullet(){
     auto born = Bullet::create();
     if (born->initWithSpriteFrameName("bullet.png")) {
@@ -42,16 +39,6 @@ bool Bullet::init()
     tileMapHeightInPixels = tileMap->getMapSize().height * tileMap->getTileSize().height;
     
     return true;
-}
-
-cocos2d::Vec2 Bullet::getPosition(){
-    auto position = Sprite::getPosition();
-    return position - _offset;
-}
-
-void Bullet::setPosition(cocos2d::Vec2 pos){
-    pos = pos + _offset;
-    Sprite::setPosition(pos);
 }
 
 void Bullet::shootBullet(cocos2d::Vec2 startPosition, cocos2d::Vec2 vel, std::string frameName, bool playerBullet, Entity* sprite){
@@ -322,17 +309,16 @@ void Bullet::addBrickFrag(cocos2d::Vec2 pos, int index){
     fragPoint.y = brickPointInScreen.y - index / 2 * 6 - 3;
     
     auto frag = Sprite::createWithSpriteFrameName("frag.png");
-    fragPoint = fragPoint + _offset;
     frag->setPosition(fragPoint);
     int tag = 26 * 4 * pos.y + 4 * pos.x + index;
-    GameScene::getCurrentGameScene()->addChild(frag, 1, tag);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(frag, 1, tag);
 }
 
 void Bullet::blastAt(cocos2d::Vec2 pos){
     auto blast = Blast::createBlast();
     blast->setPosition(pos);
     blast->blast();
-    GameScene::getCurrentGameScene()->addChild(blast, 2);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(blast, 2);
 }
 
 Vec2 Bullet::tilePosFromLocation(Vec2 location, TMXTiledMap* theTileMap){

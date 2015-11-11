@@ -109,26 +109,32 @@ void GameScene::onExit()
     Layer::onExit();
 }
 
+TMXTiledMap* GameScene::getTileMap(){
+    auto node = this->getChildByTag(GameSceneLayerTagMap);
+    CCASSERT(dynamic_cast<TMXTiledMap *>(node), "node is not a TMXTiledMap!");
+    return dynamic_cast<TMXTiledMap *>(node);
+}
+
 PlayerEntity* GameScene::getDefaultPlayer(){
-    auto node = this->getChildByTag(GameSceneNodeTagPlayer);
+    auto node = this->getTileMap()->getChildByTag(GameSceneNodeTagPlayer);
     CCASSERT(dynamic_cast<PlayerEntity *>(node), "node is not a PlayerEntity!");
     return dynamic_cast<PlayerEntity *>(node);
 }
 
 Entity* GameScene::getDefaultBoss(){
-    auto node = this->getChildByTag(GameSceneNodeTagBoss);
+    auto node = this->getTileMap()->getChildByTag(GameSceneNodeTagBoss);
     CCASSERT(dynamic_cast<Entity *>(node), "node is not a Entity!");
     return dynamic_cast<Entity *>(node);
 }
 
 EnemyCache* GameScene::getEnemyCache(){
-    auto node = this->getChildByTag(GameSceneNodeTagEnemyCache);
+    auto node = this->getTileMap()->getChildByTag(GameSceneNodeTagEnemyCache);
     CCASSERT(dynamic_cast<EnemyCache *>(node), "node is not a EnemyCache!");
     return dynamic_cast<EnemyCache *>(node);
 }
 
 BulletCache* GameScene::getBulletCache(){
-    auto node = this->getChildByTag(GameSceneNodeTagBulletCache);
+    auto node = this->getTileMap()->getChildByTag(GameSceneNodeTagBulletCache);
     CCASSERT(dynamic_cast<BulletCache *>(node), "node is not a BulletCache!");
     return dynamic_cast<BulletCache *>(node);
 }
@@ -148,18 +154,18 @@ void GameScene::initLevel(){
     //主基地标志
     auto boss = Entity::createWithSpriteFrameName("boss.png");
     boss->setPosition(6*24 + 12, 12);
-    this->addChild(boss, 0, GameSceneNodeTagBoss);
+    tileMap->addChild(boss, 0, GameSceneNodeTagBoss);
     
     auto enemyCache = EnemyCache::create();
-    this->addChild(enemyCache, 0, GameSceneNodeTagEnemyCache);
+    tileMap->addChild(enemyCache, 0, GameSceneNodeTagEnemyCache);
     
     auto bulletCache = BulletCache::create();
-    this->addChild(bulletCache, 1, GameSceneNodeTagBulletCache);
+    tileMap->addChild(bulletCache, 1, GameSceneNodeTagBulletCache);
     
     auto player = PlayerEntity::createPlayer();
-    player->cocos2d::Sprite::setPosition(Vec2(4 * 24 + player->getContentSize().width * 0.5, player->getContentSize().height * 0.5));
+    player->setPosition(4 * 24 + player->getContentSize().width * 0.5, player->getContentSize().height * 0.5);
     player->setVisible(false);
-    this->addChild(player, 0, GameSceneNodeTagPlayer);
+    tileMap->addChild(player, 0, GameSceneNodeTagPlayer);
     
     DelayTime *delayAction = DelayTime::create(1.0f);
     auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::begin, this));
@@ -178,7 +184,7 @@ void GameScene::addStar(){
     auto born = Born::createBorn();
     born->setPosition(Vec2(4 * 24 + 12, 12));
     born->blast();
-    this->addChild(born);
+    this->getTileMap()->addChild(born);
     
     DelayTime *delayAction = DelayTime::create(1.1f);
     auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::showPlayer, this));
@@ -187,9 +193,7 @@ void GameScene::addStar(){
 }
 
 void GameScene::showPlayer(){
-    auto node = this->getChildByTag(GameSceneNodeTagPlayer);
-    CCASSERT(dynamic_cast<PlayerEntity *>(node), "is not player");
-    auto player = dynamic_cast<PlayerEntity *>(node);
+    auto player = this->getDefaultPlayer();
     player->setVisible(true);
     player->showArmor();
 }
@@ -200,7 +204,7 @@ void GameScene::gameOver(){
         auto blast = Blast::createBlast();
         blast->setPosition(this->getDefaultBoss()->getPosition());
         blast->boom();
-        this->addChild(blast, 2);
+        this->getTileMap()->addChild(blast, 2);
         auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName("fail.png");
         this->getDefaultBoss()->setDisplayFrame(frame);
         this->showOver();

@@ -24,12 +24,9 @@ public:
     CC_SYNTHESIZE(cocos2d::TMXLayer*, objectLayer, ObjectLayer);
     CC_SYNTHESIZE(float, tileMapHeightInPixels, TileMapHeightInPixels);
     CC_SYNTHESIZE(Entity*, owner, Owner);
-    cocos2d::Vec2 getPosition();
-    void setPosition(cocos2d::Vec2 pos);
     void update(float delta);
     void shootBullet(cocos2d::Vec2 startPosition, cocos2d::Vec2 vel, std::string frameName, bool playerBullet, Entity* sprite);
 private:
-    static const cocos2d::Vec2 _offset;
     void checkCollisionWithBullet(float delta);
     bool checkCollision(cocos2d::Vec2 pos);
     bool checkUpCollision(cocos2d::Vec2 pos);

@@ -20,12 +20,9 @@ public:
     void blast();
     void boom();
     void boomAndShowScore(int type);
-    cocos2d::Vec2 getPosition();
-    void setPosition(cocos2d::Vec2 pos);
-    
     void theEnd(Ref* pSender);
 private:
-    static const cocos2d::Vec2 _offset;
+
 };
 
 #endif /* defined(__BattleCity__Blast__) */

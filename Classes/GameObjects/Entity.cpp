@@ -14,9 +14,6 @@
 
 USING_NS_CC;
 
-//游戏界面偏移量
-const Vec2 Entity::_offset(110, 4);
-
 bool Entity::init()
 {
     if ( !Sprite::init() )
@@ -37,13 +34,7 @@ bool Entity::init()
     return true;
 }
 
-Vec2 Entity::getPosition()
-{
-    auto position = Sprite::getPosition();
-    return position - _offset;
-}
-
-void Entity::setPosition(cocos2d::Vec2 pos){
+void Entity::ajustPosition(cocos2d::Vec2 pos){
     if(frameChangeCount-- << 0){
         frameChangeCount = 3;
         this->changeFrame();
@@ -106,7 +97,7 @@ void Entity::setPosition(cocos2d::Vec2 pos){
             hasCollision = this->checkLeftCollision(pos);
         }
     }
-    pos = pos + _offset;
+
     if (!hasCollision) {
         Sprite::setPosition(pos);
     }

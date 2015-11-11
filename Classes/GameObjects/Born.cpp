@@ -10,9 +10,6 @@
 
 USING_NS_CC;
 
-//游戏界面偏移量
-const Vec2 Born::_offset(110, 4);
-
 Born* Born::createBorn(){
     auto born = Born::create();
     if (born->initWithSpriteFrameName("star1.png")) {
@@ -29,16 +26,6 @@ bool Born::init()
     }
     
     return true;
-}
-
-cocos2d::Vec2 Born::getPosition(){
-    auto position = Sprite::getPosition();
-    return position - _offset;
-}
-
-void Born::setPosition(cocos2d::Vec2 pos){
-    pos = pos + _offset;
-    Sprite::setPosition(pos);
 }
 
 void Born::blast(){

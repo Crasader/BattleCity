@@ -46,6 +46,7 @@ public:
 
     static GameScene* getCurrentGameScene();
     static cocos2d::Rect getScreenRect();
+    cocos2d::TMXTiledMap* getTileMap();
     PlayerEntity* getDefaultPlayer();
     EnemyCache* getEnemyCache();
     BulletCache* getBulletCache();

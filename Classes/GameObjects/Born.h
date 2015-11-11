@@ -18,11 +18,9 @@ public:
     CREATE_FUNC(Born);
     static Born* createBorn();
     void blast();
-    cocos2d::Vec2 getPosition();
-    void setPosition(cocos2d::Vec2 pos);
     void theEnd(Ref* pSender);
 private:
-    static const cocos2d::Vec2 _offset;
+
 };
 
 #endif /* defined(__BattleCity__Born__) */

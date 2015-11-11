@@ -12,7 +12,6 @@
 #include "cocos2d.h"
 #include "EnemyEntity.h"
 
-class Born;
 class EnemyCache : public cocos2d::Sprite
 {
 public:
@@ -24,7 +23,7 @@ private:
     cocos2d::Vector<EnemyEntity *> enemies;
     void initEnemies();
     void initEnemySymbols();
-    void spawnEnemy(Born *sprite);
+    void spawnEnemy(cocos2d::Vec2 vec);
     void spawnFirstThreeEnemy(float delta);
     void checkForBulletCollisions();
     void continueSpawnEnemy(float delta);

@@ -12,9 +12,6 @@
 
 USING_NS_CC;
 
-//游戏界面偏移量
-const Vec2 Blast::_offset(110, 4);
-
 Blast* Blast::createBlast(){
     auto blast = Blast::create();
     if (blast->initWithFile("boom0.png")) {
@@ -31,16 +28,6 @@ bool Blast::init()
     }
     
     return true;
-}
-
-cocos2d::Vec2 Blast::getPosition(){
-    auto position = Sprite::getPosition();
-    return position - _offset;
-}
-
-void Blast::setPosition(cocos2d::Vec2 pos){
-    pos = pos + _offset;
-    Sprite::setPosition(pos);
 }
 
 void Blast::blast(){

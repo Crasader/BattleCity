@@ -63,11 +63,11 @@ void EnemyCache::initEnemySymbols(){
     }
 }
 
-void EnemyCache::spawnEnemy(Born *sprite){
+void EnemyCache::spawnEnemy(Vec2 vec){
     for (auto enemy : enemies) {
         if (!enemy->isVisible()) {
             enemy->setVisible(true);
-            enemy->setPosition(sprite->getPosition());
+            enemy->setPosition(vec);
             batch->addChild(enemy, 0, 0);
             
             //刚开始，生产第一辆的时候计划执行函数spawFirstThressEnemy来继续生产，直到3辆。
@@ -108,7 +108,7 @@ void EnemyCache::addStar(){
     this->getChildByTag(100 + GameManager::getInstance()->getEnemyRemain())->removeFromParentAndCleanup(true);
     
     DelayTime *delayAction = DelayTime::create(1.0f);
-    auto call = CallFuncN::create(CC_CALLBACK_0(EnemyCache::spawnEnemy, this, born));
+    auto call = CallFuncN::create(CC_CALLBACK_0(EnemyCache::spawnEnemy, this, born->getPosition()));
     auto seq = Sequence::create(delayAction, call, NULL);
     this->runAction(seq);
 }

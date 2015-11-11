@@ -138,5 +138,5 @@ void EnemyEntity::die(){
         scoreType = 3;
     }
     blast->boomAndShowScore(scoreType);
-    GameScene::getCurrentGameScene()->addChild(blast, 2);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(blast, 2);
 }

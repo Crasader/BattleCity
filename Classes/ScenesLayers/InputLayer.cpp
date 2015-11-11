@@ -45,7 +45,7 @@ void InputLayer::addFireButton(){
     auto pressSprite = Sprite::createWithSpriteFrameName("button-pressed.png");
     pressSprite->setScale(0.5f);
     auto skinFireButton = SneakyButtonSkinnedBase::create();
-    skinFireButton->setPosition(Vec2(screenSize.width - defaultSprite->getContentSize().width * 0.5f * defaultSprite->getScale() - 4, defaultSprite->getContentSize().height * 0.5f * defaultSprite->getScale() + 4));
+    skinFireButton->setPosition(Vec2(screenSize.width - defaultSprite->getContentSize().width * 0.5f * defaultSprite->getScale() - 4, defaultSprite->getContentSize().height * 0.5f * defaultSprite->getScale() + 8));
     skinFireButton->setDefaultSprite(defaultSprite);
     skinFireButton->setActivatedSprite(activatedSprite);
     skinFireButton->setPressSprite(pressSprite);

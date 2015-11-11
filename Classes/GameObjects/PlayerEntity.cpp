@@ -22,7 +22,6 @@ PlayerEntity* PlayerEntity::createPlayer(){
         player->setFrameName("tank11");
         player->setMode(PlayerModeNormal);
         CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("blast.wav");
-        player->scheduleUpdate();
     }
     return player;
 }
@@ -110,7 +109,7 @@ void PlayerEntity::gotHit(){
     auto blast = Blast::createBlast();
     blast->setPosition(this->getPosition());
     blast->boom();
-    GameScene::getCurrentGameScene()->addChild(blast, 2);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(blast, 2);
     
     this->setVisible(false);
     this->setPosition(Vec2(4 * 24 + 12, 12));
