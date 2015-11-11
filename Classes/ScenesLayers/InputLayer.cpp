@@ -32,20 +32,24 @@ bool InputLayer::init()
 }
 
 void InputLayer::addFireButton(){
-    float buttonRadius = 30;
     Size screenSize = Director::getInstance()->getVisibleSize();
     
     fireButton = SneakyButton::create();
     fireButton->initWithRect(Rect::ZERO);
     fireButton->setIsHoldable(true);
     
+    auto defaultSprite = Sprite::createWithSpriteFrameName("button-default.png");
+    defaultSprite->setScale(0.5f);
+    auto activatedSprite = Sprite::createWithSpriteFrameName("button-pressed.png");
+    activatedSprite->setScale(0.5f);
+    auto pressSprite = Sprite::createWithSpriteFrameName("button-pressed.png");
+    pressSprite->setScale(0.5f);
     auto skinFireButton = SneakyButtonSkinnedBase::create();
-    skinFireButton->setPosition(Vec2(screenSize.width - buttonRadius * 1.0f, buttonRadius * 1.0f));
-    skinFireButton->setDefaultSprite(Sprite::createWithSpriteFrameName("button-default.png"));
-    skinFireButton->setActivatedSprite(Sprite::createWithSpriteFrameName("button-pressed.png"));
-    skinFireButton->setPressSprite(Sprite::createWithSpriteFrameName("button-pressed.png"));
+    skinFireButton->setPosition(Vec2(screenSize.width - defaultSprite->getContentSize().width * 0.5f * defaultSprite->getScale() - 4, defaultSprite->getContentSize().height * 0.5f * defaultSprite->getScale() + 4));
+    skinFireButton->setDefaultSprite(defaultSprite);
+    skinFireButton->setActivatedSprite(activatedSprite);
+    skinFireButton->setPressSprite(pressSprite);
     skinFireButton->setButton(fireButton);
-    skinFireButton->setScale(0.5f);
     this->addChild(skinFireButton);
 }
 

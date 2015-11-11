@@ -137,17 +137,21 @@ bool Bullet::checkCollision(cocos2d::Vec2 pos){
         if (tileGID != 0) {
             auto properties = tileMap->getPropertiesForGID(tileGID).asValueMap();
             if (properties.size() > 0) {
-                auto isBrickProperty = properties.at("isBrick").asBool();
-                if (isBrickProperty) {
-                    this->setBrickFrag(tilePos);
-                    return true;
-                }
-                auto isSteelProperty = properties.at("isSteel").asBool();
-                if (isSteelProperty) {
-                    if (dynamic_cast<PlayerEntity *>(owner)) {
-                        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
+                if (properties.find("isBrick") != properties.end()){
+                    auto isBrickProperty = properties.at("isBrick").asBool();
+                    if (isBrickProperty) {
+                        this->setBrickFrag(tilePos);
+                        return true;
                     }
-                    return true;
+                }
+                if (properties.find("isSteel") != properties.end()){
+                    auto isSteelProperty = properties.at("isSteel").asBool();
+                    if (isSteelProperty) {
+                        if (dynamic_cast<PlayerEntity *>(owner)) {
+                            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
+                        }
+                        return true;
+                    }
                 }
             }
         }

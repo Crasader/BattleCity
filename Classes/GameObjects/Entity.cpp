@@ -175,18 +175,24 @@ bool Entity::checkCollision(cocos2d::Vec2 pos){
         if (tileGID != 0) {
             auto properties = tileMap->getPropertiesForGID(tileGID).asValueMap();
             if (properties.size() > 0) {
-                auto isBrickProperty = properties.at("isBrick").asBool();
-                if (isBrickProperty) {
-                    return true;
+                if (properties.find("isBrick") != properties.end()){
+                    auto isBrickProperty = properties.at("isBrick").asBool();
+                    if (isBrickProperty) {
+                        return true;
+                    }
                 }
-                auto isSteelProperty = properties.at("isSteel").asBool();
-                if (isSteelProperty) {
-                    return true;
+                if (properties.find("isSteel") != properties.end()){
+                    auto isSteelProperty = properties.at("isSteel").asBool();
+                    if (isSteelProperty) {
+                        return true;
+                    }
                 }
-                //tile 地图上，boss填充透明块，属性为isBoss
-                auto isBossProperty = properties.at("isBoss").asBool();
-                if (isBossProperty) {
-                    return true;
+                if (properties.find("isBoss") != properties.end()){
+                    //tile 地图上，boss填充透明块，属性为isBoss
+                    auto isBossProperty = properties.at("isBoss").asBool();
+                    if (isBossProperty) {
+                        return true;
+                    }
                 }
             }
         }
