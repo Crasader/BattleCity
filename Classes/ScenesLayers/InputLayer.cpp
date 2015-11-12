@@ -45,7 +45,7 @@ void InputLayer::addFireButton(){
     auto pressSprite = Sprite::createWithSpriteFrameName("button-pressed.png");
     pressSprite->setScale(0.5f);
     auto skinFireButton = SneakyButtonSkinnedBase::create();
-    skinFireButton->setPosition(Vec2(screenSize.width - defaultSprite->getContentSize().width * 0.5f * defaultSprite->getScale() - 4, defaultSprite->getContentSize().height * 0.5f * defaultSprite->getScale() + 8));
+    skinFireButton->setPosition(Vec2(screenSize.width - defaultSprite->getContentSize().width * 0.5f * defaultSprite->getScale() - 4, defaultSprite->getContentSize().height * 0.5f * defaultSprite->getScale() + 4));
     skinFireButton->setDefaultSprite(defaultSprite);
     skinFireButton->setActivatedSprite(activatedSprite);
     skinFireButton->setPressSprite(pressSprite);
@@ -75,7 +75,7 @@ void InputLayer::addJoystick(){
 }
 
 void InputLayer::update(float delta){
-    if(GameManager::getInstance()->getOver()){
+    if(!GameManager::getInstance()->getOver()){
         totalTime += delta;
         
         auto gameScene = GameScene::getCurrentGameScene();
@@ -102,19 +102,19 @@ void InputLayer::update(float delta){
                 {
                     player->setRotation(0);
                 }
-                if (velocity.x > 80)
+                else if (velocity.x > 80)
                 {
                     player->setRotation(90);
                 }
-                if (velocity.x < -80)
+                else if (velocity.x < -80)
                 {
                     player->setRotation(270);
                 }
-                if(velocity.y < -80)
+                else if(velocity.y < -80)
                 {
                     player->setRotation(180);
                 }
-                player->setPosition(Vec2(player->getPosition().x + velocity.x * delta, player->getPosition().y + velocity.y * delta));
+                player->updatePosition(Vec2(player->getPosition().x + velocity.x * delta, player->getPosition().y + velocity.y * delta));
             }
         }
     }

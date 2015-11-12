@@ -24,7 +24,7 @@ public:
     cocos2d::Vec2 getStartPos();
     cocos2d::Vec2 getVelocity(); //移动速度，以及方向
     cocos2d::Vec2 getBulletVelocity();
-    void ajustPosition(cocos2d::Vec2 pos);
+    void updatePosition(cocos2d::Vec2 pos);
 private:
     cocos2d::TMXTiledMap* tileMap;
     cocos2d::TMXLayer* objectLayer;

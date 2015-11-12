@@ -121,23 +121,27 @@ bool Bullet::checkCollision(cocos2d::Vec2 pos){
     if (pos.x > 0 && pos.x < 312 && pos.y > 0 && pos.y < 312) {
         Vec2 tilePos = this->tilePosFromLocation(pos, tileMap);
         int tileGID = objectLayer->getTileGIDAt(tilePos);
-        if (tileGID != 0) {
-            auto properties = tileMap->getPropertiesForGID(tileGID).asValueMap();
-            if (properties.size() > 0) {
-                if (properties.find("isBrick") != properties.end()){
-                    auto isBrickProperty = properties.at("isBrick").asBool();
-                    if (isBrickProperty) {
-                        this->setBrickFrag(tilePos);
-                        return true;
-                    }
-                }
-                if (properties.find("isSteel") != properties.end()){
-                    auto isSteelProperty = properties.at("isSteel").asBool();
-                    if (isSteelProperty) {
-                        if (dynamic_cast<PlayerEntity *>(owner)) {
-                            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
+        if (tileGID) {
+            auto value = tileMap->getPropertiesForGID(tileGID);
+            CCLOG("des:%s,type=%d",value.getDescription().c_str(),value.getType());
+            if (value.getType() == Value::Type::MAP) {
+                auto properties = value.asValueMap();
+                if (!properties.empty()) {
+                    if (properties.find("isBrick") != properties.end()){
+                        auto isBrickProperty = properties.at("isBrick").asBool();
+                        if (isBrickProperty) {
+                            this->setBrickFrag(tilePos);
+                            return true;
                         }
-                        return true;
+                    }
+                    if (properties.find("isSteel") != properties.end()){
+                        auto isSteelProperty = properties.at("isSteel").asBool();
+                        if (isSteelProperty) {
+                            if (dynamic_cast<PlayerEntity *>(owner)) {
+                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
+                            }
+                            return true;return true;
+                        }
                     }
                 }
             }
@@ -296,6 +300,8 @@ void Bullet::setBrickFrag(cocos2d::Vec2 pos){
             GameScene::getCurrentGameScene()->removeChildByTag(index + 1, true);
         }
     }
+    
+    GameScene::getCurrentGameScene()->printBricks();
 }
 
 void Bullet::addBrickFrag(cocos2d::Vec2 pos, int index){

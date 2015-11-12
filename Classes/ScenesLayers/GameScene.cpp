@@ -25,8 +25,6 @@ USING_NS_CC;
 
 static GameScene *_currentGameScene = NULL;
 const Rect GameScene::_screenRect(110, 4, 312, 312);
-//游戏界面偏移量
-const Vec2 GameScene::_offset(110, 4);
 
 GameScene* GameScene::getCurrentGameScene(){
     CCASSERT(_currentGameScene, "GameScene instance not yet initialized!");
@@ -55,6 +53,9 @@ bool GameScene::init()
     _currentGameScene = this;
     
     int _bricks[2704];
+    for (int i = 0; i < 2704; ++i) {
+        _bricks[0] = 0;
+    }
     bricks = _bricks;
     
     auto inputLayer = InputLayer::create();
@@ -68,7 +69,7 @@ bool GameScene::init()
     
     //黑色游戏背景
     auto gameRect = LayerColor::create(Color4B(0, 0, 0, 255), screenSize.height - 8, screenSize.height - 8);
-    gameRect->setPosition(_offset);
+    gameRect->setPosition(_screenRect.origin);
     this->addChild(gameRect, 0);
     
     //旗子
@@ -149,7 +150,7 @@ void GameScene::initLevel(){
     auto mapName = StringUtils::format("stage%d.tmx", GameManager::getInstance()->getLevel());
     auto tileMap = TMXTiledMap::create(mapName);
     this->addChild(tileMap, 1, GameSceneLayerTagMap);
-    tileMap->setPosition(_offset);
+    tileMap->setPosition(_screenRect.origin);
     
     //主基地标志
     auto boss = Entity::createWithSpriteFrameName("boss.png");
@@ -165,7 +166,7 @@ void GameScene::initLevel(){
     auto player = PlayerEntity::createPlayer();
     player->setPosition(4 * 24 + player->getContentSize().width * 0.5, player->getContentSize().height * 0.5);
     player->setVisible(false);
-    tileMap->addChild(player, 0, GameSceneNodeTagPlayer);
+    tileMap->addChild(player, -1, GameSceneNodeTagPlayer);
     
     DelayTime *delayAction = DelayTime::create(1.0f);
     auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::begin, this));
@@ -234,5 +235,11 @@ void GameScene::update(float delta){
     auto liveStr = StringUtils::format("%d", GameManager::getInstance()->getLives() - 1);
     if (GameManager::getInstance()->getLives() - 1 >= 0) {
         liveLB->setString(liveStr);
+    }
+}
+
+void GameScene::printBricks(){
+    for (int i = 0; i < 2704; ++i) {
+        CCLOG("%d",bricks[i]);
     }
 }

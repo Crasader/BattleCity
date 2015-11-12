@@ -57,6 +57,8 @@ public:
     void gameOver();
     void showOver();
     void showScore();
+    
+    void printBricks();
 private:
     virtual void onEnter();
     virtual void onExit();
@@ -67,7 +69,6 @@ private:
     
     cocos2d::Label *liveLB;
     static const cocos2d::Rect _screenRect;
-    static const cocos2d::Vec2 _offset;
     
     Entity* getDefaultBoss();
     void begin();

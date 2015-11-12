@@ -27,6 +27,6 @@ void StandardMoveComponent::update(float delta){
     if (parent->isVisible()) {
         CCASSERT(dynamic_cast<Entity *>(parent), "node is not a Entity");
         auto entity = dynamic_cast<Entity *>(parent);
-        entity->setPosition(entity->getPosition() + entity->getVelocity());
+        entity->updatePosition(entity->getPosition() + entity->getVelocity());
     }
 }

@@ -21,6 +21,10 @@ bool Entity::init()
         return false;
     }
     
+    if (dynamic_cast<PlayerEntity *>(this)) {
+        CCLOG("PlayerEntity");
+    }
+    
     frameChangeCount = 3;
     speed = 1;
     bulletSpeed = 4;
@@ -34,8 +38,8 @@ bool Entity::init()
     return true;
 }
 
-void Entity::ajustPosition(cocos2d::Vec2 pos){
-    if(frameChangeCount-- << 0){
+void Entity::updatePosition(cocos2d::Vec2 pos){
+    if(frameChangeCount-- < 0){
         frameChangeCount = 3;
         this->changeFrame();
     }
@@ -43,7 +47,12 @@ void Entity::ajustPosition(cocos2d::Vec2 pos){
     // If the current position is (still) outside the screen no adjustments should be made!
     // This allows entities to move into the screen from outside.
     bool hasCollision = false;
-    if (!GameScene::getScreenRect().intersectsRect(this->boundingBox())) {
+    
+    Rect screenRect = GameScene::getScreenRect();
+    Rect boundingBox = this->boundingBox();
+    boundingBox.origin.x += screenRect.origin.x;
+    boundingBox.origin.y += screenRect.origin.y;
+    if (screenRect.intersectsRect(boundingBox)) {
         auto screenSize = GameScene::getScreenRect().size;
         float halfWidth = this->getContentSize().width * 0.5f;
         float halfHeight = this->getContentSize().height * 0.5f;
@@ -99,7 +108,7 @@ void Entity::ajustPosition(cocos2d::Vec2 pos){
     }
 
     if (!hasCollision) {
-        Sprite::setPosition(pos);
+        this->setPosition(pos);
     }
     else if(dynamic_cast<EnemyEntity *>(this)){
         auto entity = dynamic_cast<EnemyEntity *>(this);
@@ -128,23 +137,6 @@ Vec2 Entity::getStartPos(){
 Vec2 Entity::getVelocity(){
     Vec2 point;
     if(this->getRotation() == 0) {
-        point = Vec2(0, bulletSpeed);
-    }
-    else if (this->getRotation() == 90) {
-        point = Vec2(bulletSpeed, 0);
-    }
-    else if(this->getRotation() == 180) {
-        point = Vec2(0, -bulletSpeed);
-    }
-    else if(this->getRotation() == 270) {
-        point = Vec2(-bulletSpeed, 0);
-    }
-    return point;
-}
-
-Vec2 Entity::getBulletVelocity(){
-    Vec2 point;
-    if(this->getRotation() == 0) {
         point = Vec2(0, speed);
     }
     else if (this->getRotation() == 90) {
@@ -159,30 +151,54 @@ Vec2 Entity::getBulletVelocity(){
     return point;
 }
 
+Vec2 Entity::getBulletVelocity(){
+    Vec2 point;
+    if(this->getRotation() == 0) {
+        point = Vec2(0, bulletSpeed);
+    }
+    else if (this->getRotation() == 90) {
+        point = Vec2(bulletSpeed, 0);
+    }
+    else if(this->getRotation() == 180) {
+        point = Vec2(0, -bulletSpeed);
+    }
+    else if(this->getRotation() == 270) {
+        point = Vec2(-bulletSpeed, 0);
+    }
+    return point;
+}
+
 bool Entity::checkCollision(cocos2d::Vec2 pos){
+    if (dynamic_cast<PlayerEntity *>(this)) {
+//        CCLOG("x=%f,y=%f",pos.x,pos.y);
+    }
     if (pos.x > 0 && pos.x < 312 && pos.y > 0 && pos.y < 312) {
         Vec2 tilePos = this->tilePosFromLocation(pos, tileMap);
         int tileGID = objectLayer->getTileGIDAt(tilePos);
-        if (tileGID != 0) {
-            auto properties = tileMap->getPropertiesForGID(tileGID).asValueMap();
-            if (properties.size() > 0) {
-                if (properties.find("isBrick") != properties.end()){
-                    auto isBrickProperty = properties.at("isBrick").asBool();
-                    if (isBrickProperty) {
-                        return true;
+        if (tileGID) {
+            auto value = tileMap->getPropertiesForGID(tileGID);
+            CCLOG("des:%s,type=%d",value.getDescription().c_str(),value.getType());
+            if (value.getType() == Value::Type::MAP) {
+                auto properties = value.asValueMap();
+                if (!properties.empty()) {
+                    if (properties.find("isBrick") != properties.end()){
+                        auto isBrickProperty = properties.at("isBrick").asBool();
+                        if (isBrickProperty) {
+                            return true;
+                        }
                     }
-                }
-                if (properties.find("isSteel") != properties.end()){
-                    auto isSteelProperty = properties.at("isSteel").asBool();
-                    if (isSteelProperty) {
-                        return true;
+                    if (properties.find("isSteel") != properties.end()){
+                        auto isSteelProperty = properties.at("isSteel").asBool();
+                        if (isSteelProperty) {
+                            return true;
+                        }
                     }
-                }
-                if (properties.find("isBoss") != properties.end()){
-                    //tile 地图上，boss填充透明块，属性为isBoss
-                    auto isBossProperty = properties.at("isBoss").asBool();
-                    if (isBossProperty) {
-                        return true;
+                    if (properties.find("isBoss") != properties.end()){
+                        //tile 地图上，boss填充透明块，属性为isBoss
+                        auto isBossProperty = properties.at("isBoss").asBool();
+                        if (isBossProperty) {
+                            return true;
+                        }
                     }
                 }
             }
