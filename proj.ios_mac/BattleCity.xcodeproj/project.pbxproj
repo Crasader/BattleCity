@@ -65,10 +65,10 @@
 		69044CBF1BE222940021AA84 /* LevelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69044CBC1BE222940021AA84 /* LevelScene.cpp */; };
 		690BC28E1BDCD90000F73B65 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690BC28C1BDCD90000F73B65 /* GameManager.cpp */; };
 		690BC28F1BDCD90000F73B65 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 690BC28C1BDCD90000F73B65 /* GameManager.cpp */; };
-		69BC76F51BF49E5900F1C1DE /* res_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76F31BF49E5900F1C1DE /* res_default.plist */; };
-		69BC76F61BF49E5900F1C1DE /* res_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76F31BF49E5900F1C1DE /* res_default.plist */; };
-		69BC76F71BF49E5900F1C1DE /* res_default.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76F41BF49E5900F1C1DE /* res_default.pvr.ccz */; };
-		69BC76F81BF49E5900F1C1DE /* res_default.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76F41BF49E5900F1C1DE /* res_default.pvr.ccz */; };
+		69BC77011BF4DB4B00F1C1DE /* res_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76FF1BF4DB4B00F1C1DE /* res_default.plist */; };
+		69BC77021BF4DB4B00F1C1DE /* res_default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69BC76FF1BF4DB4B00F1C1DE /* res_default.plist */; };
+		69BC77031BF4DB4B00F1C1DE /* res_default.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 69BC77001BF4DB4B00F1C1DE /* res_default.pvr.ccz */; };
+		69BC77041BF4DB4B00F1C1DE /* res_default.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 69BC77001BF4DB4B00F1C1DE /* res_default.pvr.ccz */; };
 		69C068DB1BE4D2E300263A6D /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068D91BE4D2E300263A6D /* GameScene.cpp */; };
 		69C068DC1BE4D2E300263A6D /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068D91BE4D2E300263A6D /* GameScene.cpp */; };
 		69C068F11BE6079A00263A6D /* SneakyButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C068E81BE6079A00263A6D /* SneakyButton.cpp */; };
@@ -241,8 +241,8 @@
 		69044CBD1BE222940021AA84 /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
 		690BC28C1BDCD90000F73B65 /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
 		690BC28D1BDCD90000F73B65 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
-		69BC76F31BF49E5900F1C1DE /* res_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = res_default.plist; sourceTree = "<group>"; };
-		69BC76F41BF49E5900F1C1DE /* res_default.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = res_default.pvr.ccz; sourceTree = "<group>"; };
+		69BC76FF1BF4DB4B00F1C1DE /* res_default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = res_default.plist; sourceTree = "<group>"; };
+		69BC77001BF4DB4B00F1C1DE /* res_default.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = res_default.pvr.ccz; sourceTree = "<group>"; };
 		69C068D91BE4D2E300263A6D /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		69C068DA1BE4D2E300263A6D /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		69C068E81BE6079A00263A6D /* SneakyButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SneakyButton.cpp; sourceTree = "<group>"; };
@@ -431,8 +431,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				69BC76F31BF49E5900F1C1DE /* res_default.plist */,
-				69BC76F41BF49E5900F1C1DE /* res_default.pvr.ccz */,
+				69BC76FF1BF4DB4B00F1C1DE /* res_default.plist */,
+				69BC77001BF4DB4B00F1C1DE /* res_default.pvr.ccz */,
 				69F8DB981BD62ED90005DF60 /* Default1.png */,
 				69CA79031BCCD4DA00CBDDD4 /* boom0.png */,
 				69CA79041BCCD4DA00CBDDD4 /* gameOver.png */,
@@ -725,7 +725,7 @@
 				69FEF5581BE323A900DDC453 /* blast.wav in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
-				69BC76F71BF49E5900F1C1DE /* res_default.pvr.ccz in Resources */,
+				69BC77031BF4DB4B00F1C1DE /* res_default.pvr.ccz in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
@@ -734,7 +734,7 @@
 				69F8DB991BD62ED90005DF60 /* Default1.png in Resources */,
 				69CA79101BCCD4DA00CBDDD4 /* gameOver.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
-				69BC76F51BF49E5900F1C1DE /* res_default.plist in Resources */,
+				69BC77011BF4DB4B00F1C1DE /* res_default.plist in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				69CA790E1BCCD4DA00CBDDD4 /* boom0.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
@@ -759,9 +759,9 @@
 				69CA791F1BCCD4DA00CBDDD4 /* TankTitle.png in Resources */,
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				69FEF55D1BE323A900DDC453 /* hit.wav in Resources */,
-				69BC76F61BF49E5900F1C1DE /* res_default.plist in Resources */,
+				69BC77021BF4DB4B00F1C1DE /* res_default.plist in Resources */,
 				69FEF5591BE323A900DDC453 /* blast.wav in Resources */,
-				69BC76F81BF49E5900F1C1DE /* res_default.pvr.ccz in Resources */,
+				69BC77041BF4DB4B00F1C1DE /* res_default.pvr.ccz in Resources */,
 				69CA79191BCCD4DA00CBDDD4 /* stage2.tmx in Resources */,
 				69CA791B1BCCD4DA00CBDDD4 /* stage3.tmx in Resources */,
 				69CA79211BCCD4DA00CBDDD4 /* Terr1.png in Resources */,

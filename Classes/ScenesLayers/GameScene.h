@@ -36,6 +36,14 @@ typedef enum
     
 } GameSceneNodeTags;
 
+typedef enum
+{
+    ZOrderObject = -10,
+    ZOrderFrag = 0,
+    ZOrderTank = 1,
+    ZOrderGrass = 10,
+} ZOrder;
+
 class GameScene : public cocos2d::Layer
 {
 public:
@@ -70,7 +78,7 @@ private:
     cocos2d::Label *liveLB;
     static const cocos2d::Rect _screenRect;
     
-    Entity* getDefaultBoss();
+    cocos2d::Sprite* getDefaultBoss();
     void begin();
     void update(float delta);
 };

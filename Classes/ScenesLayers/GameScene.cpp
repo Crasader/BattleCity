@@ -25,6 +25,7 @@ USING_NS_CC;
 
 static GameScene *_currentGameScene = NULL;
 const Rect GameScene::_screenRect(110, 4, 312, 312);
+int _bricks[2704];
 
 GameScene* GameScene::getCurrentGameScene(){
     CCASSERT(_currentGameScene, "GameScene instance not yet initialized!");
@@ -52,7 +53,6 @@ bool GameScene::init()
     
     _currentGameScene = this;
     
-    int _bricks[2704];
     for (int i = 0; i < 2704; ++i) {
         _bricks[0] = 0;
     }
@@ -122,10 +122,10 @@ PlayerEntity* GameScene::getDefaultPlayer(){
     return dynamic_cast<PlayerEntity *>(node);
 }
 
-Entity* GameScene::getDefaultBoss(){
+Sprite* GameScene::getDefaultBoss(){
     auto node = this->getTileMap()->getChildByTag(GameSceneNodeTagBoss);
-    CCASSERT(dynamic_cast<Entity *>(node), "node is not a Entity!");
-    return dynamic_cast<Entity *>(node);
+    CCASSERT(dynamic_cast<Sprite *>(node), "node is not a Sprite!");
+    return dynamic_cast<Sprite *>(node);
 }
 
 EnemyCache* GameScene::getEnemyCache(){
@@ -151,22 +151,26 @@ void GameScene::initLevel(){
     auto tileMap = TMXTiledMap::create(mapName);
     this->addChild(tileMap, 1, GameSceneLayerTagMap);
     tileMap->setPosition(_screenRect.origin);
+    auto topLayer = tileMap->getLayer("TopLayer");
+    topLayer->setLocalZOrder(ZOrderGrass);
+    auto objectLayer = tileMap->getLayer("ObjectLayer");
+    objectLayer->setLocalZOrder(ZOrderObject);
     
     //主基地标志
-    auto boss = Entity::createWithSpriteFrameName("boss.png");
+    auto boss = Sprite::createWithSpriteFrameName("boss.png");
     boss->setPosition(6*24 + 12, 12);
-    tileMap->addChild(boss, 0, GameSceneNodeTagBoss);
+    tileMap->addChild(boss, ZOrderObject, GameSceneNodeTagBoss);
     
     auto enemyCache = EnemyCache::create();
-    tileMap->addChild(enemyCache, 0, GameSceneNodeTagEnemyCache);
+    tileMap->addChild(enemyCache, ZOrderTank, GameSceneNodeTagEnemyCache);
     
     auto bulletCache = BulletCache::create();
-    tileMap->addChild(bulletCache, 1, GameSceneNodeTagBulletCache);
+    tileMap->addChild(bulletCache, ZOrderTank, GameSceneNodeTagBulletCache);
     
     auto player = PlayerEntity::createPlayer();
     player->setPosition(4 * 24 + player->getContentSize().width * 0.5, player->getContentSize().height * 0.5);
     player->setVisible(false);
-    tileMap->addChild(player, -1, GameSceneNodeTagPlayer);
+    tileMap->addChild(player, ZOrderTank, GameSceneNodeTagPlayer);
     
     DelayTime *delayAction = DelayTime::create(1.0f);
     auto call = CallFuncN::create(CC_CALLBACK_0(GameScene::begin, this));
@@ -239,7 +243,12 @@ void GameScene::update(float delta){
 }
 
 void GameScene::printBricks(){
+    string result = "";
     for (int i = 0; i < 2704; ++i) {
-        CCLOG("%d",bricks[i]);
+        result += to_string(bricks[i]);;
+        if (i % 52 == 0) {
+            CCLOG("%s",result.c_str());
+            result = "";
+        }
     }
 }

@@ -41,7 +41,12 @@
  </tileset>
  <layer name="ObjectLayer" width="26" height="26">
   <data encoding="base64" compression="zlib">
-   eJzdlDsOwCAMQ6F7T9Lz9P5X6ZIslizZEa1CLXmI+LwQAmP8U1cYY7Q73o2zKu7CUevSnaPmsQtn9/ej6gy/rSoH12Xsnjvns/3U/Kr1z/1nWOW49z7B6ntw/4cqx427cVj/qeMuh2kVR9VKDus1h4NmOd9hdtYDnPqK8wDBZCoX
+   eJxjYBieQBuK0fnomFT5wWYPtfiDxR5iw2Ww20OsO4aKPUM9/xALeKGY1oBce9D1wfik+humHpd5xLqP3PAn1f/Uindi8wO55QOp9pDLHyz24Ep/xMqTag8uQC17iAXUtAdXWqOGO9HNCoViSspIWtoDAGfsKds=
+  </data>
+ </layer>
+ <layer name="TopLayer" width="26" height="26">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAroDxihmNbmj9ozas9wtodYe0OhGBdgQsOE7CMX4LIHAMz0AOc=
   </data>
  </layer>
 </map>

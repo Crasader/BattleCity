@@ -64,7 +64,11 @@ void Bullet::update(float delta){
     this->setPosition(this->getPosition() + velocity);
     
     // When the bullet leaves the screen, make it invisible
-    if (!GameScene::getScreenRect().intersectsRect(this->boundingBox())) {
+    Rect screenRect = GameScene::getScreenRect();
+    Rect boundingBox = this->boundingBox();
+    boundingBox.origin.x += screenRect.origin.x;
+    boundingBox.origin.y += screenRect.origin.y;
+    if (!screenRect.intersectsRect(boundingBox)) {
         if (dynamic_cast<PlayerEntity *>(this->getOwner())) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
         }
@@ -140,7 +144,7 @@ bool Bullet::checkCollision(cocos2d::Vec2 pos){
                             if (dynamic_cast<PlayerEntity *>(owner)) {
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
                             }
-                            return true;return true;
+                            return true;
                         }
                     }
                 }
@@ -163,7 +167,7 @@ bool Bullet::checkCollision(cocos2d::Vec2 pos){
 bool Bullet::checkUpCollision(cocos2d::Vec2 pos){
     auto point1 = pos + Vec2(6, 3);
     auto point2 = pos + Vec2(-6, 3);
-    if (this->checkCollision(point1) || this->checkCollision(point2)) {
+    if (this->checkCollision(point1) | this->checkCollision(point2)) {
         return true;
     }
     return false;
@@ -172,7 +176,7 @@ bool Bullet::checkUpCollision(cocos2d::Vec2 pos){
 bool Bullet::checkRightCollision(cocos2d::Vec2 pos){
     auto point1 = pos + Vec2(3, 6);
     auto point2 = pos + Vec2(3, -6);
-    if (this->checkCollision(point1) || this->checkCollision(point2)) {
+    if (this->checkCollision(point1) | this->checkCollision(point2)) {
         return true;
     }
     return false;
@@ -181,7 +185,7 @@ bool Bullet::checkRightCollision(cocos2d::Vec2 pos){
 bool Bullet::checkDownCollision(cocos2d::Vec2 pos){
     auto point1 = pos + Vec2(6, -3);
     auto point2 = pos + Vec2(-6, -3);
-    if (this->checkCollision(point1) || this->checkCollision(point2)) {
+    if (this->checkCollision(point1) | this->checkCollision(point2)) {
         return true;
     }
     return false;
@@ -190,7 +194,7 @@ bool Bullet::checkDownCollision(cocos2d::Vec2 pos){
 bool Bullet::checkLeftCollision(cocos2d::Vec2 pos){
     auto point1 = pos + Vec2(-3, 6);
     auto point2 = pos + Vec2(-3, -6);
-    if (this->checkCollision(point1) || this->checkCollision(point2)) {
+    if (this->checkCollision(point1) | this->checkCollision(point2)) {
         return true;
     }
     return false;
@@ -317,7 +321,7 @@ void Bullet::addBrickFrag(cocos2d::Vec2 pos, int index){
     auto frag = Sprite::createWithSpriteFrameName("frag.png");
     frag->setPosition(fragPoint);
     int tag = 26 * 4 * pos.y + 4 * pos.x + index;
-    GameScene::getCurrentGameScene()->getTileMap()->addChild(frag, 1, tag);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(frag, ZOrderFrag, tag);
 }
 
 void Bullet::blastAt(cocos2d::Vec2 pos){
