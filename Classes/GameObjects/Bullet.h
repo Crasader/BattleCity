@@ -23,7 +23,7 @@ public:
     CC_SYNTHESIZE(cocos2d::TMXTiledMap*, tileMap, TileMap);
     CC_SYNTHESIZE(cocos2d::TMXLayer*, objectLayer, ObjectLayer);
     CC_SYNTHESIZE(float, tileMapHeightInPixels, TileMapHeightInPixels);
-    CC_SYNTHESIZE(Entity*, owner, Owner);
+    CC_SYNTHESIZE_RETAIN(Entity*, owner, Owner);
     void update(float delta);
     void shootBullet(cocos2d::Vec2 startPosition, cocos2d::Vec2 vel, std::string frameName, bool playerBullet, Entity* sprite);
 private:

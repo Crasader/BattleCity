@@ -152,7 +152,9 @@ void GameScene::initLevel(){
     this->addChild(tileMap, 1, GameSceneLayerTagMap);
     tileMap->setPosition(_screenRect.origin);
     auto topLayer = tileMap->getLayer("TopLayer");
-    topLayer->setLocalZOrder(ZOrderGrass);
+    if (topLayer) {
+        topLayer->setLocalZOrder(ZOrderGrass);
+    }
     auto objectLayer = tileMap->getLayer("ObjectLayer");
     objectLayer->setLocalZOrder(ZOrderObject);
     
