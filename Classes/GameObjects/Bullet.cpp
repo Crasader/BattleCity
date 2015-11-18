@@ -63,21 +63,26 @@ void Bullet::shootBullet(cocos2d::Vec2 startPosition, cocos2d::Vec2 vel, std::st
 void Bullet::update(float delta){
     this->setPosition(this->getPosition() + velocity);
     
-    // When the bullet leaves the screen, make it invisible
+    //get boundingBox in the same Coordinate System with game screen
     Rect screenRect = GameScene::getScreenRect();
     Rect boundingBox = this->boundingBox();
     boundingBox.origin.x += screenRect.origin.x;
     boundingBox.origin.y += screenRect.origin.y;
+    
+    //bullet begin leaving the game screen
     if (!screenRect.intersectsRect(boundingBox)) {
+        //if this bullet is fired from player,play sound
         if (dynamic_cast<PlayerEntity *>(this->getOwner())) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.wav");
         }
+        // When the bullet leaves the game screen, make it invisible
         this->setVisible(false);
         this->getOwner()->setReload(false);
         this->stopAllActions();
         this->unscheduleAllCallbacks();
-        this->blastAt(this->getPosition());
+        this->blastAt(this->getBlastPosition());
     }
+    //bullet in the screen
     else{
         bool hasCollision = false;
         if (this->getRotation() == 0) {
@@ -324,11 +329,30 @@ void Bullet::addBrickFrag(cocos2d::Vec2 pos, int index){
     GameScene::getCurrentGameScene()->getTileMap()->addChild(frag, ZOrderFrag, tag);
 }
 
-void Bullet::blastAt(cocos2d::Vec2 pos){
+Vec2 Bullet::getBlastPosition(){
+    Vec2 pos = this->getPosition();
+    Rect screenRect = GameScene::getScreenRect();
+    Rect boundingBox = this->boundingBox();
+    if (boundingBox.origin.x < 0) {
+        pos.x = 0;
+    }
+    else if(boundingBox.origin.y < 0){
+        pos.y = 0;
+    }
+    else if(boundingBox.origin.x + boundingBox.size.width > screenRect.size.width){
+        pos.x = screenRect.size.width;
+    }
+    else if(boundingBox.origin.y + boundingBox.size.height > screenRect.size.height){
+        pos.y = screenRect.size.height;
+    }
+    return pos;
+}
+
+void Bullet::blastAt(Vec2 pos){
     auto blast = Blast::createBlast();
     blast->setPosition(pos);
     blast->blast();
-    GameScene::getCurrentGameScene()->getTileMap()->addChild(blast, 2);
+    GameScene::getCurrentGameScene()->getTileMap()->addChild(blast, ZOrderBlast);
 }
 
 Vec2 Bullet::tilePosFromLocation(Vec2 location, TMXTiledMap* theTileMap){

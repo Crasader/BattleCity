@@ -35,6 +35,7 @@ private:
     bool checkLeftCollision(cocos2d::Vec2 pos);
     void setBrickFrag(cocos2d::Vec2 pos);
     void addBrickFrag(cocos2d::Vec2 pos, int index);
+    cocos2d::Vec2 getBlastPosition();
     void blastAt(cocos2d::Vec2 pos);
     
     cocos2d::Vec2 tilePosFromLocation(cocos2d::Vec2 location, cocos2d::TMXTiledMap* theTileMap);

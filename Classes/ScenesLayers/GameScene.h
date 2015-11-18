@@ -41,6 +41,7 @@ typedef enum
     ZOrderObject = -10,
     ZOrderFrag = 0,
     ZOrderTank = 1,
+    ZOrderBlast = 2,
     ZOrderGrass = 10,
 } ZOrder;
 
