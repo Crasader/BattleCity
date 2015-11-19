@@ -67,7 +67,7 @@ public:
     void showOver();
     void showScore();
     
-    void printBricks();
+//    void printBricks();
 private:
     virtual void onEnter();
     virtual void onExit();

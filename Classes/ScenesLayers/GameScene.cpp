@@ -7,6 +7,7 @@
 //
 
 #include "GameScene.h"
+#include <string>
 #include "CCAnimationHelper.h"
 #include "GameManager.h"
 #include "InputLayer.h"
@@ -244,13 +245,13 @@ void GameScene::update(float delta){
     }
 }
 
-void GameScene::printBricks(){
-    string result = "";
-    for (int i = 0; i < 2704; ++i) {
-        result += to_string(bricks[i]);;
-        if (i % 52 == 0) {
-            CCLOG("%s",result.c_str());
-            result = "";
-        }
-    }
-}
+//void GameScene::printBricks(){
+//    string result = "";
+//    for (int i = 0; i < 2704; ++i) {
+//        result += to_string(bricks[i]);;
+//        if (i % 52 == 0) {
+//            CCLOG("%s",result.c_str());
+//            result = "";
+//        }
+//    }
+//}

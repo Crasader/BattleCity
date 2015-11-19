@@ -310,7 +310,7 @@ void Bullet::setBrickFrag(cocos2d::Vec2 pos){
         }
     }
     
-    GameScene::getCurrentGameScene()->printBricks();
+//    GameScene::getCurrentGameScene()->printBricks();
 }
 
 void Bullet::addBrickFrag(cocos2d::Vec2 pos, int index){
